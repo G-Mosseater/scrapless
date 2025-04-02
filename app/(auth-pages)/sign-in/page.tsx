@@ -1,5 +1,5 @@
 import { LoginForm } from "../../../components/signInForm";
-import SearchBar from "../../../components/search-bar";
+import NavBar from "../../../components/nav-bar";
 
 export default function Page() {
   return (
@@ -7,7 +7,7 @@ export default function Page() {
       <div className="w-full max-w-sm">
 
         <LoginForm/>
-        <SearchBar/>
+        <NavBar/>
       </div>
       
     </div>
