@@ -1,5 +1,5 @@
 import { LoginForm } from "../../../components/signInForm";
-import BananarchyIcon from "../../../components/bananarchy.icon";
+import SearchBar from "../../../components/search-bar";
 
 export default function Page() {
   return (
@@ -7,8 +7,9 @@ export default function Page() {
       <div className="w-full max-w-sm">
 
         <LoginForm/>
-        <BananarchyIcon/>
+        <SearchBar/>
       </div>
+      
     </div>
   )
 }
