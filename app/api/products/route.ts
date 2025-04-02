@@ -1,4 +1,3 @@
-// app/api/products/route.ts
 import { supabase } from "@/lib/supabaseClient"
 import { NextResponse } from "next/server"
 

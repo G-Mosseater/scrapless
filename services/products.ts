@@ -1,6 +1,5 @@
 import { supabase } from "@/lib/supabaseClient"
 
-
 // Create a product
 export async function createProduct(product: {
   name: string
