@@ -6,9 +6,9 @@ export default function ProductCard() {
             <div className="flex flex-col items-center justify-center">
                 <div className="flex w-[130px] h-[160px] border border-[#14213D] rounded-t-2xl justify-center items-center">
                     <Image
-                        src="../public/"
-                        width={120}
-                        height={120}
+                        src="/images/foto.png"
+                        width={130}
+                        height={160}
                         alt="foto"
                     />
                 </div>
