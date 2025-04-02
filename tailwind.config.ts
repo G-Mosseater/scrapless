@@ -18,15 +18,19 @@ const config = {
       },
     },
     extend: {
+      fontFamily: {
+        quicksand: ["Quicksand", "sans-serif"], 
+      },
       colors: {
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
+        border: "#14213D",
+        input: "#14213D",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
+          DEFAULT: "#14213D", 
+          foreground: "white", 
+          hover: "#F0AF3E",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -72,6 +76,9 @@ const config = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+    },
+    variants: {
+      fill: ['hover', 'focus']
     },
   },
   plugins: [require("tailwindcss-animate")],
