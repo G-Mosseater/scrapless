@@ -1,5 +1,5 @@
 import { LoginForm } from "../../../components/signInForm";
-import NavBar from "../../../components/nav-bar";
+import ProductCard from "../../../components/product-card";
 
 export default function Page() {
   return (
@@ -7,7 +7,7 @@ export default function Page() {
       <div className="w-full max-w-sm">
 
         <LoginForm/>
-        <NavBar/>
+        <ProductCard/>
       </div>
       
     </div>
