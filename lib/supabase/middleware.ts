@@ -15,7 +15,7 @@ export async function updateSession(request: NextRequest) {
           return request.cookies.getAll()
         },
         setAll(cookiesToSet) {
-          cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value))
+          cookiesToSet.forEach(({ name, value, options }) => request.cookies.set(name, value))
           supabaseResponse = NextResponse.next({
             request,
           })
@@ -33,19 +33,20 @@ export async function updateSession(request: NextRequest) {
 
   // IMPORTANT: DO NOT REMOVE auth.getUser()
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
-
+  const 
+    data
+   = await supabase.auth.getUser()
+   console.log(data)
   if (
-    !user &&
+    !data.data.user &&
     !request.nextUrl.pathname.startsWith('/sign-in') &&
     !request.nextUrl.pathname.startsWith('/sign-up') &&
-    !request.nextUrl.pathname.startsWith('/forgot-password')
+    !request.nextUrl.pathname.startsWith('/auth/callback')
+
   ) {
     // no user, potentially respond by redirecting the user to the login page
     const url = request.nextUrl.clone()
-    url.pathname = '/sign-in'
+    url.pathname = '/auth/callback'
     return NextResponse.redirect(url)
   }
 
