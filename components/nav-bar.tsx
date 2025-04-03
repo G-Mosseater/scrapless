@@ -9,7 +9,7 @@ export default function NavBar() {
     const isActive = (path: string) => pathname === path;
 
     return (
-        <div className="flex justify-around items-center w-[398px] h-[75px] border border-[#14213D] rounded-t-[10px] bg-white">
+        <div className="flex justify-around items-center w-[full] h-[75px] border-2 border-[#14213D] rounded-t-[10px] bg-white">
             
             <div className={`flex items-center justify-center w-12 h-12 rounded-lg transition-all duration-300 
                 ${isActive("/forgot-password") ? "bg-[#F0AF3E]" : "bg-opacity-0 hover:bg-[#F0AF3E]/30"}`}>

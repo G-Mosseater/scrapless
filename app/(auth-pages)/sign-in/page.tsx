@@ -1,6 +1,4 @@
 import { LoginForm } from "../../../components/signInForm";
-import ProductCard from "../../../components/product-card";
-import { Button } from "@/components/ui/button";
 
 export default function Page() {
   return (
@@ -8,7 +6,6 @@ export default function Page() {
       <div className="w-full max-w-sm">
 
         <LoginForm/>
-        <ProductCard/>
       </div>
       
     </div>
