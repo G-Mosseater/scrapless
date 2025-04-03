@@ -141,15 +141,18 @@ export const signInWithOAuth = async () => {
 
   const supabase = await createClient();
 
-  const { data, error } = await supabase.auth.signInWithOAuth({
+  const data= await supabase.auth.signInWithOAuth({
     provider: 'google', 
     options: {
-      redirectTo: 'http://localhost:3000/', 
+
+      redirectTo: 'http://localhost:3000/home', 
+
     },
 
-  });
-  if (data.url) {
+  });   
 
-    redirect(data.url) // use the redirect API for your server framework
+  if (data.data.url) {
+
+    redirect(data.data.url) // use the redirect API for your server framework
   }
 }
