@@ -1,17 +1,63 @@
 import { supabase } from "@/lib/supabaseClient"
 import { NextResponse } from "next/server"
 
-// CREATE - POST
+
+//CREATE - POST
 export async function POST(request: Request) {
   const body = await request.json()
-  const { quantity, price } = body
+  const { user_id, product_id, quantity } = body
 
-  const { data, error } = await supabase.from("products").insert([
+  if (!user_id || !product_id || !quantity) {
+    return NextResponse.json({ error: "Missing fields" }, { status: 400 })
+  }
+
+  const { data: product, error: productError } = await supabase
+    .from("products")
+    .select("price")
+    .eq("id", product_id)
+    .single()
+
+  if (productError || !product) {
+    return NextResponse.json({ error: "Product not found" }, { status: 404 })
+  }
+
+  const unit_price = product.price
+  const total_price = unit_price * quantity
+
+  const { data: existingItem, error: fetchError } = await supabase
+    .from("cart")
+    .select("*")
+    .eq("user_id", user_id)
+    .eq("product_id", product_id)
+    .single()
+
+  if (fetchError && fetchError.code !== "PGRST116") {
+    return NextResponse.json({ error: fetchError.message }, { status: 500 })
+  }
+
+  if (existingItem) {
+    const updatedQuantity = existingItem.quantity + quantity
+    const updatedPrice = updatedQuantity * unit_price
+
+    const { data, error } = await supabase
+      .from("cart")
+      .update({
+        quantity: updatedQuantity,
+        price: updatedPrice,
+      })
+      .eq("id", existingItem.id)
+
+    if (error) return NextResponse.json({ error: error.message }, { status: 500 })
+
+    return NextResponse.json(data)
+  }
+
+  const { data, error } = await supabase.from("cart").insert([
     {
-      user_id: "5d8670d8-14e3-4b24-aa3d-947d2137e907",
-      podruct_id: "c96e9f11-8c40-46e0-b99f-832e8a7a876a",
+      user_id,
+      product_id,
       quantity,
-      price,
+      price: total_price,
     },
   ])
 
@@ -21,41 +67,89 @@ export async function POST(request: Request) {
 }
 
 // READ - GET
-export async function GET() {
-    const { data, error } = await supabase.from("cart").select("*")
-  
-    if (error) return NextResponse.json({ error: error.message }, { status: 500 })
-  
-    return NextResponse.json(data)
-  }
+export async function GET(request: Request) {
+  const userId = "5d8670d8-14e3-4b24-aa3d-947d2137e907"
+
+  const { data, error } = await supabase
+    .from("cart")
+    .select(`
+      id,
+      quantity,
+      price,
+      product_id,
+      products (
+        name,
+        image_url,
+        type,
+        price
+      )
+    `)
+    .eq("user_id", userId)
+
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 })
+
+  return NextResponse.json(data)
+}
 
 
 // UPDATE - PUT
 export async function PUT(request: Request) {
-    const body = await request.json()
-    const { id, ...updates } = body
-  
-    const { data, error } = await supabase
-      .from("cart")
-      .update(updates)
-      .eq("id", id)
-  
-    if (error) return NextResponse.json({ error: error.message }, { status: 500 })
-  
-    return NextResponse.json(data)
+  const body = await request.json()
+  const { id, quantity } = body
+
+  if (!id || !quantity) {
+    return NextResponse.json({ error: "Missing id or quantity" }, { status: 400 })
   }
+
+  const { data: cartItem, error: cartError } = await supabase
+    .from("cart")
+    .select("product_id")
+    .eq("id", id)
+    .single()
+
+  if (cartError || !cartItem) {
+    return NextResponse.json({ error: "Cart item not found" }, { status: 404 })
+  }
+
+  const productId = cartItem.product_id
+
+  const { data: product, error: productError } = await supabase
+    .from("products")
+    .select("price")
+    .eq("id", productId)
+    .single()
+
+  if (productError || !product) {
+    return NextResponse.json({ error: "Product not found" }, { status: 404 })
+  }
+
+  const unitPrice = product.price
+  const totalPrice = unitPrice * quantity
+
+  const { data, error } = await supabase
+    .from("cart")
+    .update({
+      quantity,
+      price: totalPrice,
+    })
+    .eq("id", id)
+
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 })
+
+  return NextResponse.json({ message: "Cart item updated", data })
+}
 
 // DELETE - DELETE
 export async function DELETE(request: Request) {
-    const body = await request.json()
-    const { id } = body
-  
-    const { data, error } = await supabase
-      .from("cart")
-      .delete()
-      .eq("id", id)
-  
-    if (error) return NextResponse.json({ error: error.message }, { status: 500 })
-  
-    return NextResponse.json({ message: "Product deleted", data })
-  }
+  const body = await request.json()
+  const { id } = body
+
+  const { data, error } = await supabase
+    .from("cart")
+    .delete()
+    .eq("id", id)
+
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 })
+
+  return NextResponse.json({ message: "Product deleted", data })
+}
