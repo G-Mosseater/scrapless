@@ -13,14 +13,14 @@ export default function NavBar() {
             
             <div className={`flex items-center justify-center w-12 h-12 rounded-lg transition-all duration-300 
                 ${isActive("/forgot-password") ? "bg-[#F0AF3E]" : "bg-opacity-0 hover:bg-[#F0AF3E]/30"}`}>
-                <a href="/forgot-password">
+                <a href="/home">
                     <Image src="/icons/home-rounded.png" width={40} height={40} alt="Home" />
                 </a>
             </div>
 
             <div className={`flex items-center justify-center w-12 h-12 rounded-lg transition-all duration-300 
                 ${isActive("/store") ? "bg-[#F0AF3E]" : "bg-opacity-0 hover:bg-[#F0AF3E]/30"}`}>
-                <a href="/store">
+                <a href="/list">
                     <Image src="/icons/store.png" width={40} height={40} alt="Store" />
                 </a>
             </div>
