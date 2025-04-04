@@ -36,14 +36,15 @@ export async function updateSession(request: NextRequest) {
   const 
     data
    = await supabase.auth.getUser()
-   console.log(data)
   if (
     !data.data.user &&
     !request.nextUrl.pathname.startsWith('/sign-in') &&
     !request.nextUrl.pathname.startsWith('/sign-up') &&
     !request.nextUrl.pathname.startsWith('/auth/callback')&&
-    !request.nextUrl.pathname.startsWith('/forgot-password')
-
+    !request.nextUrl.pathname.startsWith('/forgot-password') &&
+    !request.nextUrl.pathname.startsWith('/home') &&
+    !request.nextUrl.pathname.startsWith('/create-product') &&
+    !request.nextUrl.pathname.startsWith('/api')
   ) {
     // no user, potentially respond by redirecting the user to the login page
     const url = request.nextUrl.clone()

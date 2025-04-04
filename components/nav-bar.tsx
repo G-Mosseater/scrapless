@@ -40,7 +40,7 @@ export default function NavBar() {
             </div>
 
             <div className={`flex items-center justify-center w-12 h-12 rounded-lg transition-all duration-300 
-                ${isActive("/box") ? "bg-[#F0AF3E]" : "bg-opacity-0 hover:bg-[#F0AF3E]/30"}`}>
+                ${isActive("/myBox") ? "bg-[#F0AF3E]" : "bg-opacity-0 hover:bg-[#F0AF3E]/30"}`}>
                 <a href="/box">
                     <Image src="/icons/box-bold.png" width={40} height={40} alt="Box" />
                 </a>
