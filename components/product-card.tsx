@@ -1,21 +1,26 @@
+import * as React from "react";
 import Image from "next/image";
 
-export default function ProductCard() {
-    return (
-        <>
-            <div className="flex flex-col">
-                <div className="flex w-[130px] h-[160px] border-r-2 border-l-2 border-t-2 border-[#14213D] rounded-t-2xl justify-center items-center">
-                    <Image
-                        src="/images/foto.png"
-                        width={130}
-                        height={160}
-                        alt="foto"
-                    />
-                </div>
-                <div className="flex justify-center w-[130px] h-[30px] border-b-2 border-r-2 border-l-2 border-[#14213D] rounded-b-2xl">
-                    <p>name</p>
-                </div>
-            </div>
-        </>
-    )
-} 
+import {
+  Card,
+  CardContent,
+  CardFooter,
+} from "@/components/ui/card";
+
+export function ProductCard() {
+  return (
+    <Card className="w-[130px] h-[190px] border-2 border-[#14213D] rounded-2xl overflow-hidden">
+      <CardContent className="flex justify-center items-center p-0 h-[160px]">
+        <Image
+          src="/images/card.jpg"
+          width={130}
+          height={160}
+          alt="foto"
+        />
+      </CardContent>
+      <CardFooter className="flex justify-center items-center h-[30px] border-[#14213D]">
+        <p>name</p>
+      </CardFooter>
+    </Card>
+  );
+}

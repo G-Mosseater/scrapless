@@ -4,7 +4,7 @@ import { useState } from "react";
 import NavBar from "@/components/nav-bar";
 import SearchBar from "@/components/search-bar";
 import BananarchyIcon from "@/components/bananarchy-icon";
-import ProductCard from "@/components/product-card";
+import { ProductCard } from "@/components/product-card";
 import { Button } from "@/components/ui/button";
 
 export default function Page() {
