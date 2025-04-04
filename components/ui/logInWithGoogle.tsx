@@ -17,7 +17,7 @@ const SignInWithGoogleButton = () => {
         }}
       >
         <Image
-          src="/assets/icons/googleIcon.svg"
+          src="/public/icons/googleIcon.svg"
           alt="Google Icon"
           width={24}
           height={24}
