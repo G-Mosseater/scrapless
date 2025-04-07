@@ -1,10 +1,10 @@
-import Image from 'next/image';
+import Image from "next/legacy/image";
 
 export default function BananarchyIcon() {
     return (
         <>
             <Image
-                src="/images/logo.png"
+                src="/banana.svg"
                 width={100}
                 height={100}
                 alt="Bananarchy logo"
