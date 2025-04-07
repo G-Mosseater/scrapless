@@ -6,7 +6,7 @@ import type { CartItem } from "@/services/cart"
 import CartCardComponent from "./cart-card-component"
 
 interface CartListProps {
-  onCartChange: (items: CartItem[]) => void;  // Nueva prop para pasar los productos
+  onCartChange: (items: CartItem[]) => void;  // New prop to pass products
 }
 
 export default function CartList({ onCartChange }: CartListProps) {
@@ -18,7 +18,7 @@ export default function CartList({ onCartChange }: CartListProps) {
     try {
       const data = await getCart()
       setCartItems(data)
-      onCartChange(data) // Pasar los productos al componente padre
+      onCartChange(data) // Pass the products to the parent component
     } catch (err: any) {
       setError(err.message || "Error fetching cart")
     } finally {
