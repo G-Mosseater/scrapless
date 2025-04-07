@@ -1,6 +1,3 @@
-import { Geist } from "next/font/google";
-import { ThemeProvider } from "next-themes";
-import Link from "next/link";
 import "./globals.css";
 
 const defaultUrl = process.env.VERCEL_URL
@@ -13,10 +10,6 @@ export const metadata = {
   description: "Revolutionizing food waste in Gran Canaria",
 };
 
-const geistSans = Geist({
-  display: "swap",
-  subsets: ["latin"],
-});
 
 export default function RootLayout({
   children,
@@ -24,18 +17,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={geistSans.className} suppressHydrationWarning>
+    <html lang="en"  suppressHydrationWarning>
       <body className="bg-background text-foreground">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
           <main className="min-h-screen flex flex-col items-center">
-            <div className="flex flex-col gap-20 max-w-5xl ">{children}</div>
+            <div className="flex flex-col gap-20 w-full max-w-[700px] ">{children}</div>
           </main>
-        </ThemeProvider>
       </body>
     </html>
   );

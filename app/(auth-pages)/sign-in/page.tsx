@@ -1,15 +1,17 @@
 import { LoginForm } from "../../../components/signInForm";
-import SearchBar from "../../../components/search-bar";
+import loginBanana from "/public/loginBanana.gif";
+import Image from "next/image";
 
 export default function Page() {
   return (
-    <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10">
+    <div className="flex min-h-svh w-full items-center justify-center  md:p-10 ">
       <div className="w-full max-w-sm">
-
-        <LoginForm/>
-        <SearchBar/>
+        <div className="flex justify-center items-center ">
+          <h1 className="text-center text-[34px] font-changa font-bold">Scrapless</h1>
+        </div>{" "}
+        <Image src={loginBanana} alt="Banana Gif" unoptimized></Image>
+        <LoginForm />
       </div>
-      
     </div>
-  )
+  );
 }
