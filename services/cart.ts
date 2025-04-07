@@ -1,5 +1,18 @@
 const API_URL = "/api/cart"
 
+export type CartItem = {
+  id: string
+  product_id: string
+  quantity: number
+  price: number
+  products: {
+    name: string
+    image_url: string
+    price: number
+    type: "fruit" | "vegetable"
+  }
+}
+
 // Add a product
 export async function addToCart({
   user_id,
