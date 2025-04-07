@@ -1,21 +1,15 @@
 import { forgotPasswordAction } from "@/app/actions";
 import { FormMessage, Message } from "@/components/form-message";
-
 import ForgotPassword from "@/components/forgot-password-form";
-
-import NavBar from "../../components/nav-bar";
-
-
 
 export default async function ForgotPasswordPage(props: {
   searchParams: Promise<Message>;
 }) {
-  const searchParams =  props.searchParams;
-  console.log('smari')
+  const searchParams = props.searchParams;
+
   return (
-    <>
-    <ForgotPassword searchParams={searchParams}/>
-    <NavBar/>
-    </>
+    <div className="flex min-h-svh w-full items-center justify-center p-4 md:p-10">
+      <ForgotPassword searchParams={searchParams} />
+    </div>
   );
 }
