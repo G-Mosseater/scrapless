@@ -5,7 +5,11 @@ import { getCart } from "@/services/cart"
 import type { CartItem } from "@/services/cart"
 import CartCardComponent from "./cart-card-component"
 
-export default function CartList() {
+interface CartListProps {
+  onCartChange: (items: CartItem[]) => void;  // New prop to pass products
+}
+
+export default function CartList({ onCartChange }: CartListProps) {
   const [cartItems, setCartItems] = useState<CartItem[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -14,6 +18,7 @@ export default function CartList() {
     try {
       const data = await getCart()
       setCartItems(data)
+      onCartChange(data) // Pass the products to the parent component
     } catch (err: any) {
       setError(err.message || "Error fetching cart")
     } finally {
