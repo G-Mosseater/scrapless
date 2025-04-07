@@ -3,6 +3,7 @@ import { FormMessage, Message } from "@/components/form-message";
 
 import ForgotPassword from "@/components/forgot-password-form";
 
+import NavBar from "../../components/nav-bar";
 
 
 
@@ -14,7 +15,7 @@ export default async function ForgotPasswordPage(props: {
   return (
     <>
     <ForgotPassword searchParams={searchParams}/>
-    
+    <NavBar/>
     </>
   );
 }

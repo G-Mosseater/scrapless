@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-export default function BananarchyIcon() {
+export default function BananarchyIconTitle() {
     return (
         <>
             <div className="flex items-center justify-center w-full gap-x-4">
