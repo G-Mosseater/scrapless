@@ -4,7 +4,7 @@ export default function BananarchyIcon() {
     return (
         <>
             <Image
-                src="/banana.png"
+                src="/banana.svg"
                 width={100}
                 height={100}
                 alt="Bananarchy logo"
