@@ -6,6 +6,7 @@ import SearchBar from "@/components/search-bar";
 import BananarchyIcon from "@/components/bananarchy-icon";
 import { ProductCard } from "@/components/product-card";
 import { Button } from "@/components/ui/button";
+import ProductsComponent from "@/components/products-card-component";
 
 export default function Page() {
     const [selected, setSelected] = useState<string | null>(null);
@@ -50,14 +51,11 @@ export default function Page() {
 
             {/* Contenedor de productos centrado */}
             <div className="grid grid-cols-2 md:grid-cols-2 gap-x-20 gap-y-10 pt-14 pb-20">
+                {/* <ProductCard />
                 <ProductCard />
                 <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
+                <ProductCard /> */}
+                <ProductsComponent/>
             </div>
 
             {/* Navbar fija abajo */}

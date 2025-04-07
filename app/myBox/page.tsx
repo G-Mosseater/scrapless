@@ -1,17 +1,5 @@
-import React from 'react'
-import CartCard from '@/components/ui/cartCard'
+import CartList from "@/components/cart-list"
 
-
-
-const page = () => {
-  return (
-
-
-    
-    <CartCard/>
-
-
-  )
+export default function CartPage() {
+  return <CartList />
 }
-
-export default page
