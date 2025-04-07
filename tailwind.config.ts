@@ -16,10 +16,16 @@ const config = {
       screens: {
         "2xl": "1400px",
       },
-    },
+      
+      
+    }
+    ,
+  
     extend: {
       fontFamily: {
-        quicksand: ["Quicksand", "sans-serif"], 
+        quicksand: ["Quicksand", "sans-serif"],
+        changa: ["Changa", "sans-serif"],
+ 
       },
       colors: {
         border: "#14213D",
