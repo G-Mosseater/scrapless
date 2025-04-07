@@ -39,15 +39,15 @@ const Dropzone = ({
   const isActive = restProps.isDragActive
   const isInvalid =
     (restProps.isDragActive && restProps.isDragReject) ||
-    (restProps.errors.length > 0 && !restProps.isSuccess) ||
-    restProps.files.some((file) => file.errors.length !== 0)
+    (restProps.errors?.length > 0 && !restProps.isSuccess) ||
+    restProps.files?.some((file:any) => file.errors.length !== 0)
 
   return (
     <DropzoneContext.Provider value={{ ...restProps }}>
       <div
         {...getRootProps({
           className: cn(
-            'border-2 border-gray-300 rounded-lg p-6 text-center bg-card transition-colors duration-300 text-foreground',
+            'border-2 border-gray-300 rounded-lg p-6 text-center bg-card transition-colors duration-300 text-foreground w-full max-w-[350px]',
             className,
             isSuccess ? 'border-solid' : 'border-dashed',
             isActive && 'border-primary bg-primary/10',
@@ -78,7 +78,7 @@ const DropzoneContent = ({ className }: { className?: string }) => {
 
   const handleRemoveFile = useCallback(
     (fileName: string) => {
-      setFiles(files.filter((file) => file.name !== fileName))
+      setFiles(files.filter((file:any) => file.name !== fileName))
     },
     [files, setFiles]
   )
@@ -96,8 +96,8 @@ const DropzoneContent = ({ className }: { className?: string }) => {
 
   return (
     <div className={cn('flex flex-col', className)}>
-      {files.map((file, idx) => {
-        const fileError = errors.find((e) => e.name === file.name)
+      {files.map((file:any, idx:number) => {
+        const fileError = errors.find((e:any) => e.name === file.name)
         const isSuccessfullyUploaded = !!successes.find((e) => e === file.name)
 
         return (
@@ -122,7 +122,7 @@ const DropzoneContent = ({ className }: { className?: string }) => {
               {file.errors.length > 0 ? (
                 <p className="text-xs text-destructive">
                   {file.errors
-                    .map((e) =>
+                    .map((e:any) =>
                       e.message.startsWith('File is larger than')
                         ? `File is larger than ${formatBytes(maxFileSize, 2)} (Size: ${formatBytes(file.size, 2)})`
                         : e.message
@@ -164,7 +164,7 @@ const DropzoneContent = ({ className }: { className?: string }) => {
           <Button
             variant="outline"
             onClick={onUpload}
-            disabled={files.some((file) => file.errors.length !== 0) || loading}
+            disabled={files.some((file:any) => file.errors.length !== 0) || loading}
           >
             {loading ? (
               <>
