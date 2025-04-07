@@ -97,7 +97,7 @@ export default async function home() {
                 <div className="flex justify-between items-center">
                     <h2 className="text-3xl font-bold">Scrapless</h2>
                     <Image
-                        src="/banana-ZWGmKnTVp4.png"
+                        src="/banana.png"
                         alt="Example image"
                         layout="responsive"
                         width={16}

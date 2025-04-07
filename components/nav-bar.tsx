@@ -1,5 +1,6 @@
 "use client";
 
+import { List } from "lucide-react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 
@@ -13,37 +14,37 @@ export default function NavBar() {
             
             <div className={`flex items-center justify-center w-12 h-12 rounded-lg transition-all duration-300 
                 ${isActive("/forgot-password") ? "bg-[#F0AF3E]" : "bg-opacity-0 hover:bg-[#F0AF3E]/30"}`}>
-                <a href="/home">
+                <List href="/home">
                     <Image src="/icons/home-rounded.png" width={40} height={40} alt="Home" />
-                </a>
+                </List>
             </div>
 
             <div className={`flex items-center justify-center w-12 h-12 rounded-lg transition-all duration-300 
                 ${isActive("/store") ? "bg-[#F0AF3E]" : "bg-opacity-0 hover:bg-[#F0AF3E]/30"}`}>
-                <a href="/list">
+                <List href="/list">
                     <Image src="/icons/store.png" width={40} height={40} alt="Store" />
-                </a>
+                </List>
             </div>
 
             <div className={`flex items-center justify-center w-12 h-12 rounded-lg transition-all duration-300 
                 ${isActive("/map") ? "bg-[#F0AF3E]" : "bg-opacity-0 hover:bg-[#F0AF3E]/30"}`}>
-                <a href="/map">
+                <List href="/map">
                     <Image src="/icons/map-pin.png" width={40} height={40} alt="Map" />
-                </a>
+                </List>
             </div>
 
             <div className={`flex items-center justify-center w-12 h-12 rounded-lg transition-all duration-300 
                 ${isActive("/profile") ? "bg-[#F0AF3E]" : "bg-opacity-0 hover:bg-[#F0AF3E]/30"}`}>
-                <a href="/profile">
+                <List href="/profile">
                     <Image src="/icons/profile-fill.png" width={40} height={40} alt="Profile" />
-                </a>
+                </List>
             </div>
 
             <div className={`flex items-center justify-center w-12 h-12 rounded-lg transition-all duration-300 
                 ${isActive("/myBox") ? "bg-[#F0AF3E]" : "bg-opacity-0 hover:bg-[#F0AF3E]/30"}`}>
-                <a href="/box">
+                <List href="/box">
                     <Image src="/icons/box-bold.png" width={40} height={40} alt="Box" />
-                </a>
+                </List>
             </div>
 
         </div>
