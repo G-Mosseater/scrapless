@@ -1,6 +1,6 @@
-import Image  from "next/legacy/image";
+import Image from "next/legacy/image";
 
-import  { Button }  from "../../components/ui/button";
+import { Button } from "../../components/ui/button";
 import Link from "next/link";
 
 
@@ -13,7 +13,7 @@ export default async function home() {
             <div className="relative">
                 <p className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 absolute top-4 left-6">Scrapless</p>
                 <Image
-                    src="/image-165.png"
+                    src="/food-wast.svg"
                     alt="Example image"
                     layout="responsive"
                     width={16}
@@ -22,17 +22,19 @@ export default async function home() {
             </div>
 
             <div className="mx-3">
-                <div className="p-6 max-w-md my-4">
+                <div className="flex justify-between p-6 my-4">
                     <h2 className="text-xl sm:text-2xl font-bold text-gray-900 inline-flex items-center">
                         A smarter way to save food and reduce waste!
+                    </h2>
+                    <div>
                         <Image
-                            src="/fruits-loading-Vu5S5tYoxZ.png"
+                            src="/fruits-loading.svg"
                             alt="Example image"
                             layout="responsive"
                             width={16}
                             height={9}
                         />
-                    </h2>
+                    </div>
                 </div>
 
 
@@ -42,7 +44,7 @@ export default async function home() {
 
                     <p className="mt-7">Our platform helps farmers sell surplus produce, reduces waste, and ensures more food reaches people—not landfills.</p>
                     <Image
-                        src="/d184c5c7-49ba-4f5e-9323-b263a21a0f8f.png"
+                        src="/fruit-high5.svg"
                         alt="Example image"
                         layout="responsive"
                         width={10}
@@ -55,7 +57,7 @@ export default async function home() {
                     </Button>
 
                     <Image
-                        src="/or.png"
+                        src="/or.svg"
                         alt="Example image"
                         layout="responsive"
                         width={13}
@@ -67,7 +69,7 @@ export default async function home() {
                 <div className="my-7">
                     <h2 className="font-bold text-2xl">Why we should we care about food waste?</h2>
                     <Image
-                        src="/dust-bin-MWA1OxNwY5.png"
+                        src="/dust-bin.svg"
                         alt="Example image"
                         layout="responsive"
                         width={16}
@@ -81,7 +83,7 @@ export default async function home() {
                 </div>
                 <div className="my-4">
                     <Image
-                        src="/64174324-c2c1-4057-8d00-e8887fdc2895.png"
+                        src="/farmer.svg"
                         alt="Example image"
                         layout="responsive"
                         width={16}
@@ -95,9 +97,18 @@ export default async function home() {
             </div>
             <footer className="bg-[#14213D] text-white p-6 space-y-4">
                 <div className="flex justify-between items-center">
+                    <div>
+                        <Image
+                        src="/banana.svg"
+                            alt="Example image"
+                            layout="responsive"
+                            width={10}
+                            height={4}
+                        />
+                    </div>
                     <h2 className="text-3xl font-bold">Scrapless</h2>
                     <Image
-                        src="/banana.png"
+                        src="/banana.svg"
                         alt="Example image"
                         layout="responsive"
                         width={16}
@@ -110,7 +121,7 @@ export default async function home() {
                     <ul className="flex space-x-4 mt-2">
                         <li>
                             <Image
-                                src="/facebook.png"
+                                src="/facebook.svg"
                                 alt="Example image"
                                 layout="responsive"
                                 width={16}
@@ -118,7 +129,7 @@ export default async function home() {
                             /></li>
                         <li>
                             <Image
-                                src="/ion_social-github.png"
+                                src="/ion_social-github.svg"
                                 alt="Example image"
                                 layout="responsive"
                                 width={16}
@@ -126,7 +137,7 @@ export default async function home() {
                             /></li>
                         <li>
                             <Image
-                                src="/Vector.png"
+                                src="/insta.svg"
                                 alt="Example image"
                                 layout="responsive"
                                 width={16}

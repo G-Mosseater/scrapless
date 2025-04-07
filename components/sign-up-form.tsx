@@ -1,5 +1,4 @@
 import Link from "next/link";
-
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -15,17 +14,17 @@ import SignInWithGoogleButton from "./ui/logInWithGoogle";
 
 export function SignUpForm() {
   return (
-    <Card className="mx-auto max-w-sm">
+    <Card className="mx-auto max-w-sm border-none">
       <CardHeader>
         <CardTitle className="text-xl">Sign Up</CardTitle>
-        <CardDescription>
+        <CardDescription className='py-2'>
           Enter your information to create an account
         </CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="p-0">
         <form>
           <div className="grid gap-4">
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div className="grid gap-2">
                 <Label htmlFor="first-name">First name</Label>
                 <Input
@@ -45,6 +44,7 @@ export function SignUpForm() {
                 />
               </div>
             </div>
+
             <div className="grid gap-2">
               <Label htmlFor="email">Email</Label>
               <Input
@@ -55,17 +55,21 @@ export function SignUpForm() {
                 required
               />
             </div>
+
             <div className="grid gap-2">
               <Label htmlFor="password">Password</Label>
               <Input name="password" id="password" type="password" />
             </div>
-            <Button formAction={signUpAction} type="submit" className="w-full">
-              Create  account
-            </Button>
-            <SignInWithGoogleButton/>
 
+            <div className="pt-14 grid gap-5">
+              <Button formAction={signUpAction} type="submit" className="w-full">
+                Create account
+              </Button>
+              <SignInWithGoogleButton />
+            </div>
           </div>
         </form>
+
         <div className="mt-4 text-center text-sm">
           Already have an account?{" "}
           <Link href="/sign-in" className="underline">
