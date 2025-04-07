@@ -68,7 +68,7 @@ export async function POST(request: Request) {
 
 // READ - GET
 export async function GET(request: Request) {
-  const userId = "5d8670d8-14e3-4b24-aa3d-947d2137e907"
+  const userId = "9b88da29-fc93-48d3-832f-e40106cf55e0"
 
   const { data, error } = await supabase
     .from("cart")

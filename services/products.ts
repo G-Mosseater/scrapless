@@ -44,6 +44,19 @@ export async function getUserProducts() {
   return data
 }
 
+//Get Product by Id
+export async function getProductById(id: string): Promise<Product> {
+  const { data, error } = await supabase
+    .from("products")
+    .select("*")
+    .eq("id", id)
+    .single()
+
+  if (error) throw new Error("Failed to fetch product")
+  return data
+}
+
+
 // Get All products
 export async function getAllProducts(): Promise<Product[]> {
   const { data, error } = await supabase.from("products").select("*")
