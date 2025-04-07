@@ -24,35 +24,36 @@ export default function Page() {
 
             <div className="flex justify-center gap-x-20 pt-20">
                 <Button
-                    // className={`w-[120px] border-2 transition-all duration-300 ${
-                    //     selected === "Fruits"
-                    //         ? "bg-white text-[#14213D] border-[#14213D]"
-                    //         : "bg-[#14213D] text-white border-[#14213D]"
-                    // }`}
-                    // onClick={() => setSelected("Fruits")}
+                // className={`w-[120px] border-2 transition-all duration-300 ${
+                //     selected === "Fruits"
+                //         ? "bg-white text-[#14213D] border-[#14213D]"
+                //         : "bg-[#14213D] text-white border-[#14213D]"
+                // }`}
+                // onClick={() => setSelected("Fruits")}
                 >
                     Fruits
                 </Button>
 
                 <Button
-                    // className={`w-[120px] border-2 transition-all duration-300 ${
-                    //     selected === "Vegetables"
-                    //         ? "bg-white text-[#14213D] border-[#14213D]"
-                    //         : "bg-[#14213D] text-white border-[#14213D]"
-                    // }`}
-                    // onClick={() => setSelected("Vegetables")}
+                // className={`w-[120px] border-2 transition-all duration-300 ${
+                //     selected === "Vegetables"
+                //         ? "bg-white text-[#14213D] border-[#14213D]"
+                //         : "bg-[#14213D] text-white border-[#14213D]"
+                // }`}
+                // onClick={() => setSelected("Vegetables")}
                 >
                     Vegetables
                 </Button>
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-2 gap-x-20 gap-y-10 pt-14 pb-20">
- 
 
-                <ProductsComponent/>
 
-            <div className="fixed bottom-0 left-0 w-full">
-                <NavBar />
+                <ProductsComponent />
+
+                <div className="fixed bottom-0 left-0 w-full">
+                    <NavBar />
+                </div>
             </div>
         </div>
     );
