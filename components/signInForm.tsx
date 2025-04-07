@@ -32,7 +32,7 @@ export function LoginForm({
         <CardContent className='p-0'>
           <form>
             <div className="flex flex-col gap-6 ">
-              <div className="">
+              <div>
                 <Label htmlFor="email">Email</Label>
                 <Input
                   id="email"
