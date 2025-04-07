@@ -47,12 +47,9 @@ export default function Page() {
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-2 gap-x-20 gap-y-10 pt-14 pb-20">
-                {/* <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard /> */}
+ 
+
                 <ProductsComponent/>
-            </div>
 
             <div className="fixed bottom-0 left-0 w-full">
                 <NavBar />
