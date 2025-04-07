@@ -46,7 +46,6 @@ export default function Page() {
                 </Button>
             </div>
 
-            {/* Contenedor de productos centrado */}
                 <ProductsComponent/>
 
             <div className="fixed bottom-0 left-0 w-full">
