@@ -1,7 +1,7 @@
 "use client";
 
-import { List } from "lucide-react";
-import Image from "next/image";
+import Link from "next/link";
+import Image from "next/legacy/image";
 import { usePathname } from "next/navigation";
 
 export default function NavBar() {
@@ -10,43 +10,41 @@ export default function NavBar() {
     const isActive = (path: string) => pathname === path;
 
     return (
-        <div className="flex justify-around items-center w-[full] h-[75px] border-2 border-[#14213D] rounded-t-[10px] bg-white">
-            
+        <div className="flex justify-around items-center w-full h-[75px] border-2 border-[#14213D] rounded-t-[10px] bg-white shadow-md">
             <div className={`flex items-center justify-center w-12 h-12 rounded-lg transition-all duration-300 
-                ${isActive("/forgot-password") ? "bg-[#F0AF3E]" : "bg-opacity-0 hover:bg-[#F0AF3E]/30"}`}>
-                <List href="/home">
+                ${isActive("/home") ? "bg-[#F0AF3E]" : "bg-opacity-0 hover:bg-[#F0AF3E]/30"}`}>
+                <Link href="/home">
                     <Image src="/icons/home-rounded.png" width={40} height={40} alt="Home" />
-                </List>
+                </Link>
             </div>
 
             <div className={`flex items-center justify-center w-12 h-12 rounded-lg transition-all duration-300 
-                ${isActive("/store") ? "bg-[#F0AF3E]" : "bg-opacity-0 hover:bg-[#F0AF3E]/30"}`}>
-                <List href="/list">
-                    <Image src="/icons/store.png" width={40} height={40} alt="Store" />
-                </List>
+                ${isActive("/list") ? "bg-[#F0AF3E]" : "bg-opacity-0 hover:bg-[#F0AF3E]/30"}`}>
+                <Link href="/list">
+                    <Image src="/icons/store.png" width={30} height={30} alt="Store" />
+                </Link>
             </div>
 
             <div className={`flex items-center justify-center w-12 h-12 rounded-lg transition-all duration-300 
                 ${isActive("/map") ? "bg-[#F0AF3E]" : "bg-opacity-0 hover:bg-[#F0AF3E]/30"}`}>
-                <List href="/map">
+                <Link href="/map">
                     <Image src="/icons/map-pin.png" width={40} height={40} alt="Map" />
-                </List>
+                </Link>
             </div>
 
             <div className={`flex items-center justify-center w-12 h-12 rounded-lg transition-all duration-300 
                 ${isActive("/profile") ? "bg-[#F0AF3E]" : "bg-opacity-0 hover:bg-[#F0AF3E]/30"}`}>
-                <List href="/profile">
+                <Link href="/profile">
                     <Image src="/icons/profile-fill.png" width={40} height={40} alt="Profile" />
-                </List>
+                </Link>
             </div>
 
             <div className={`flex items-center justify-center w-12 h-12 rounded-lg transition-all duration-300 
                 ${isActive("/myBox") ? "bg-[#F0AF3E]" : "bg-opacity-0 hover:bg-[#F0AF3E]/30"}`}>
-                <List href="/box">
+                <Link href="/myBox">
                     <Image src="/icons/box-bold.png" width={40} height={40} alt="Box" />
-                </List>
+                </Link>
             </div>
-
         </div>
     );
 }

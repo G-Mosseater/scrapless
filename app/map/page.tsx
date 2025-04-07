@@ -1,13 +1,59 @@
 "use client";
-import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
-import { useState } from "react";
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  useMapEvents,
+  useMap,
+} from "react-leaflet";
+import { useEffect, useState } from "react";
 import "leaflet/dist/leaflet.css";
+import NavBar from "@/components/nav-bar";
+import L from "leaflet";
 
 export default function MapPage() {
   const [position, setPosition] = useState<[number, number] | null>(null);
+  const [mapCenter, setMapCenter] = useState<[number, number]>([40.4168, -3.7038]);
   const [placeInfo, setPlaceInfo] = useState<any>(null);
 
-  // Función para manejar clics en el mapa
+  // Configure Leaflet Icons
+  delete (L.Icon.Default.prototype as any)._getIconUrl;
+  L.Icon.Default.mergeOptions({
+    iconRetinaUrl: "/leaflet/marker-icon-2x.png",
+    iconUrl: "/leaflet/marker-icon.png",
+    shadowUrl: "/leaflet/marker-shadow.png",
+  });
+
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          const coords: [number, number] = [pos.coords.latitude, pos.coords.longitude];
+          setMapCenter(coords);
+          setPosition(coords);
+          fetchPlaceInfo(coords[0], coords[1]);
+        },
+        (err) => {
+          console.warn("Error getting location:", err.message);
+        }
+      );
+    }
+  }, []);
+
+  function FlyToLocation({ position }: { position: [number, number] | null }) {
+    const map = useMap();
+
+    useEffect(() => {
+      if (position) {
+        map.flyTo(position, 13, {
+          duration: 2,
+        });
+      }
+    }, [position]);
+
+    return null;
+  }
+
   function LocationMarker() {
     useMapEvents({
       click(e) {
@@ -20,50 +66,51 @@ export default function MapPage() {
     return position === null ? null : <Marker position={position} />;
   }
 
-  // Obtener información del lugar con OpenStreetMap Nominatim
   async function fetchPlaceInfo(lat: number, lng: number) {
     const response = await fetch(
       `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`
     );
     const data = await response.json();
 
-    // Simulación de datos adicionales
     setPlaceInfo({
       name: data.display_name || "Lugar desconocido",
-      rating: (Math.random() * 5).toFixed(1), // Simulación de rating
-      hours: "8:00 AM - 10:00 PM", // Simulación de horario
+      rating: (Math.random() * 5).toFixed(1),
+      hours: "8:00 AM - 10:00 PM",
     });
   }
 
   return (
-    <div className="flex flex-col h-screen pb-16"> {/* Agregamos espacio para la navbar */}
-      {/* Mapa - Mitad superior */}
-      <div className="h-1/2">
-        <MapContainer center={[40.4168, -3.7038]} zoom={13} className="h-full w-full">
+    <div className="flex flex-col h-screen bg-[#ECE6DA] pb-16">
+      {/* Map */}
+      <div className="h-1/2 rounded-b-3xl overflow-hidden shadow-lg">
+        <MapContainer center={mapCenter} zoom={13} className="h-full w-full">
           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
           <LocationMarker />
+          <FlyToLocation position={position} />
         </MapContainer>
       </div>
 
-      {/* Información - Mitad inferior */}
-      <div className="h-1/2 flex flex-col items-center justify-center bg-gray-100 p-5">
-        {placeInfo ? (
-          <div className="text-center">
-            <h2 className="text-2xl font-bold">{placeInfo.name}</h2>
-            <p className="text-lg mt-2">⭐ {placeInfo.rating}/5</p>
-            <p className="text-lg mt-2">🕒 {placeInfo.hours}</p>
-          </div>
-        ) : (
-          <p className="text-lg text-gray-500">Haz clic en el mapa para ver información</p>
-        )}
+      {/* Information */}
+      <div className="h-1/2 flex flex-col items-center justify-center px-6 py-8">
+        <div className="bg-white rounded-2xl shadow-xl p-6 w-full max-w-xl text-center animate-fade-in border-2 border-[#F0AF3E]">
+          {placeInfo ? (
+            <>
+              <h2 className="text-2xl font-bold text-[#14213D]">{placeInfo.name}</h2>
+              <p className="text-lg text-[#14213D] mt-3">⭐ {placeInfo.rating} / 5</p>
+              <p className="text-lg text-[#14213D] mt-1">🕒 {placeInfo.hours}</p>
+            </>
+          ) : (
+            <p className="text-[#14213D] text-lg opacity-60">
+              Click on the map to see information about the place
+            </p>
+          )}
+        </div>
       </div>
 
-      {/* Navbar fija en la parte inferior */}
-      <nav className="fixed bottom-0 w-full bg-white shadow-md p-4 flex justify-around items-center">
-        <button className="text-lg font-semibold">🏠 Home</button>
-        <button className="text-lg font-semibold">📍 Lugares</button>
-        <button className="text-lg font-semibold">⚙️ Configuración</button>
-      </nav>
+      {/* Navbar */}
+      <div className="fixed bottom-0 left-0 w-full bg-[#14213D]">
+        <NavBar />
+      </div>
     </div>
   );
 }

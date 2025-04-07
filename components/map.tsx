@@ -2,12 +2,21 @@
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from "react-leaflet";
 import { useState } from "react";
 import "leaflet/dist/leaflet.css";
+import L from "leaflet";
 
 export default function Map() {
     const [position, setPosition] = useState<[number, number] | null>(null);
     const [placeInfo, setPlaceInfo] = useState<any>(null);
 
-    // Función para manejar clics en el mapa
+    delete (L.Icon.Default.prototype as any)._getIconUrl;
+
+    L.Icon.Default.mergeOptions({
+        iconRetinaUrl: "/leaflet/marker-icon-2x.png",
+        iconUrl: "/leaflet/marker-icon.png",
+        shadowUrl: "/leaflet/marker-shadow.png",
+    });
+
+    // Manage clicks on the map
     function LocationMarker() {
         useMapEvents({
             click(e) {
@@ -27,25 +36,23 @@ export default function Map() {
                             <p>Horario: {placeInfo.hours}</p>
                         </div>
                     ) : (
-                        "Cargando..."
+                        "Loading..."
                     )}
                 </Popup>
             </Marker>
         );
     }
 
-    // Obtener información del lugar con una API (ejemplo con OpenStreetMap Nominatim)
     async function fetchPlaceInfo(lat: number, lng: number) {
         const response = await fetch(
             `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`
         );
         const data = await response.json();
 
-        // Simulación de datos adicionales
         setPlaceInfo({
             name: data.display_name,
-            rating: (Math.random() * 5).toFixed(1), // Generar un rating ficticio
-            hours: "8:00 AM - 10:00 PM", // Simulación de horario
+            rating: (Math.random() * 5).toFixed(1),
+            hours: "8:00 AM - 10:00 PM",
         });
     }
 
