@@ -1,6 +1,6 @@
-import Image  from "next/image";
+import Image from "next/image";
 
-import  { Button }  from "../../components/ui/button";
+import { Button } from "../../components/ui/button";
 import Link from "next/link";
 
 
@@ -15,7 +15,6 @@ export default async function home() {
                 <Image
                     src="/food-wast.svg"
                     alt="Example image"
-                    layout="responsive"
                     width={16}
                     height={9}
                 />
@@ -30,7 +29,6 @@ export default async function home() {
                         <Image
                             src="/fruits-loading.svg"
                             alt="Example image"
-                            layout="responsive"
                             width={16}
                             height={9}
                         />
@@ -46,7 +44,6 @@ export default async function home() {
                     <Image
                         src="/fruit-high5.svg"
                         alt="Example image"
-                        layout="responsive"
                         width={10}
                         height={9}
                     />
@@ -59,7 +56,6 @@ export default async function home() {
                     <Image
                         src="/or.svg"
                         alt="Example image"
-                        layout="responsive"
                         width={13}
                         height={9}
                         className="my-7"
@@ -71,7 +67,6 @@ export default async function home() {
                     <Image
                         src="/dust-bin.svg"
                         alt="Example image"
-                        layout="responsive"
                         width={16}
                         height={9}
                     />
@@ -85,7 +80,6 @@ export default async function home() {
                     <Image
                         src="/farmer.svg"
                         alt="Example image"
-                        layout="responsive"
                         width={16}
                         height={9}
                         className="mb-7"
@@ -98,15 +92,20 @@ export default async function home() {
             <footer className="bg-[#14213D] text-white p-6 space-y-4">
                 <div className="flex justify-between items-center">
                     <div>
+                        <Image
+                        src="/banana.svg"
+                            alt="Example image"
+                            width={10}
+                            height={4}
+                        />
+                    </div>
+                    <h2 className="text-3xl font-bold">Scrapless</h2>
                     <Image
                         src="/banana.svg"
                         alt="Example image"
-                        layout="responsive"
-                        width={10}
-                        height={4}
+                        width={16}
+                        height={9}
                     />
-                    </div>
-                    <h2 className="text-3xl font-bold">Scrapless</h2>
                 </div>
 
                 <div className="flex justify-between items-center">
@@ -116,7 +115,6 @@ export default async function home() {
                             <Image
                                 src="/facebook.svg"
                                 alt="Example image"
-                                layout="responsive"
                                 width={16}
                                 height={9}
                             /></li>
@@ -124,7 +122,6 @@ export default async function home() {
                             <Image
                                 src="/ion_social-github.svg"
                                 alt="Example image"
-                                layout="responsive"
                                 width={16}
                                 height={9}
                             /></li>
@@ -132,7 +129,6 @@ export default async function home() {
                             <Image
                                 src="/insta.svg"
                                 alt="Example image"
-                                layout="responsive"
                                 width={16}
                                 height={9}
                             /></li>

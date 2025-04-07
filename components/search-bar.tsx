@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import { Input } from "@/components/ui/input"
 
 export default function SearchBar() {
