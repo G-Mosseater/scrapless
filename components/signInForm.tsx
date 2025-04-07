@@ -11,8 +11,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
 import { signInAction } from "@/app/actions";
 import SignInWithGoogleButton from "./ui/logInWithGoogle";
 
@@ -21,18 +19,20 @@ export function LoginForm({
   ...props
 }: React.ComponentPropsWithoutRef<"div">) {
   return (
+
+
     <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <Card>
-        <CardHeader>
+      <Card className="border-none ">
+        <CardHeader className='py-2'>
           <CardTitle className="text-2xl">Login</CardTitle>
           <CardDescription>
             Enter your email below to login to your account
           </CardDescription>
         </CardHeader>
-        <CardContent>
+        <CardContent className='p-0'>
           <form>
-            <div className="flex flex-col gap-6">
-              <div className="grid gap-2">
+            <div className="flex flex-col gap-6 ">
+              <div className="">
                 <Label htmlFor="email">Email</Label>
                 <Input
                   id="email"
