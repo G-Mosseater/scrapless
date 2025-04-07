@@ -47,10 +47,10 @@ export default async function home() {
 
                         <p className="mt-7">Our platform helps farmers sell surplus produce, reduces waste, and ensures more food reaches people—not landfills.</p>
                         <Image
-                            src="/fruit-high5.svg"
+                            src="/icons/high5.gif"
                             alt="Example image"
-                            width={150}
-                            height={75}
+                            width={100}
+                            height={50}
                             className="mx-auto"
                         />
                     </div>
