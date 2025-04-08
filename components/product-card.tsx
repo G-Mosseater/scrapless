@@ -9,7 +9,7 @@ import {
 
 export function ProductCard() {
   return (
-    <Card className="w-[130px] h-[190px] border-2 border-[#14213D] rounded-2xl overflow-hidden">
+    <Card className="w-[130px] h-[190px] border-[1px] border-[#14213D] rounded-2xl overflow-hidden">
       <CardContent className="flex justify-center items-center p-0 h-[160px]">
         <Image
           src="/images/card.jpg"

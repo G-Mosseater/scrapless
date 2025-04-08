@@ -45,7 +45,7 @@ function ProductsComponent({ searchTerm, selectedCategory }: ProductsComponentPr
       {filteredProducts.length > 0 ? (
         filteredProducts.map((product) => (
           <Link key={product.id} href={`/product-details/${product.id}`}>
-            <Card className="w-[130px] h-[190px] border-2 border-[#14213D] rounded-2xl overflow-hidden">
+            <Card className="w-[130px] h-[190px] border-[1px] border-[#14213D] rounded-2xl overflow-hidden">
               <CardContent className="flex justify-center items-center p-0 h-[160px]">
                 <Image
                   src={product.image_url || "/images/card.jpg"}

@@ -1,4 +1,6 @@
 import NavBar from "@/components/nav-bar";
+import TopNavBar from "@/components/top-navigation-menu";
+import { NavigationMenu } from "@/components/ui/navigation-menu";
 import "./globals.css";
 import HomePageLayout from "@/components/homepageLayout";
 
