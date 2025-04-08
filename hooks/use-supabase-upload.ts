@@ -48,6 +48,9 @@ type UseSupabaseUploadOptions = {
    * When set to false, an error is thrown if the object already exists. Defaults to `false`
    */
   upsert?: boolean
+
+  onUploadComplete?: (url: string) => void
+
 }
 
 type UseSupabaseUploadReturn = ReturnType<typeof useSupabaseUpload>
@@ -83,14 +86,14 @@ const useSupabaseUpload = (options: UseSupabaseUploadOptions) => {
       const validFiles = acceptedFiles
         .filter((file) => !files.find((x) => x.name === file.name))
         .map((file) => {
-          ;(file as FileWithPreview).preview = URL.createObjectURL(file)
-          ;(file as FileWithPreview).errors = []
+          ; (file as FileWithPreview).preview = URL.createObjectURL(file)
+            ; (file as FileWithPreview).errors = []
           return file as FileWithPreview
         })
 
       const invalidFiles = fileRejections.map(({ file, errors }) => {
-        ;(file as FileWithPreview).preview = URL.createObjectURL(file)
-        ;(file as FileWithPreview).errors = errors
+        ; (file as FileWithPreview).preview = URL.createObjectURL(file)
+          ; (file as FileWithPreview).errors = errors
         return file as FileWithPreview
       })
 
@@ -119,24 +122,39 @@ const useSupabaseUpload = (options: UseSupabaseUploadOptions) => {
     const filesToUpload =
       filesWithErrors.length > 0
         ? [
-            ...files.filter((f) => filesWithErrors.includes(f.name)),
-            ...files.filter((f) => !successes.includes(f.name)),
-          ]
+          ...files.filter((f) => filesWithErrors.includes(f.name)),
+          ...files.filter((f) => !successes.includes(f.name)),
+        ]
         : files
 
     const responses = await Promise.all(
       filesToUpload.map(async (file) => {
+        const filePath = !!path ? `${path}/${file.name}` : file.name
+
         const { error } = await supabase.storage
           .from(bucketName)
-          .upload(!!path ? `${path}/${file.name}` : file.name, file, {
+          .upload(filePath, file, {
             cacheControl: cacheControl.toString(),
             upsert,
           })
+
         if (error) {
           return { name: file.name, message: error.message }
         } else {
+          // ✅ Obtener la URL pública
+          const publicUrl = supabase
+            .storage
+            .from(bucketName)
+            .getPublicUrl(filePath).data.publicUrl
+
+          // ✅ Llamar al callback si está definido
+          if (options.onUploadComplete && publicUrl) {
+            options.onUploadComplete(publicUrl)
+          }
+
           return { name: file.name, message: undefined }
         }
+
       })
     )
 
