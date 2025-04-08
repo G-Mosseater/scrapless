@@ -6,7 +6,7 @@ import Link from "next/link";
 export default async function Home() {
   return (
     <>
-      <main className="flex-1 flex flex-col gap-6">
+      <main className=" flex flex-col gap-6">
       <div className="relative w-full max-w-3xl mx-auto aspect-[16/9]">
                       <p className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 absolute top-4 left-6 z-10">
                           Scrapless
