@@ -12,11 +12,9 @@ export default function HomePageLayout({ children }: Layout) {
   const HomePage = pathname === "/";
 
   return (
-    <main className="min-h-screen flex flex-col items-center">
       <div >
         {children}
         {!HomePage && <NavBar />}
       </div>
-    </main>
   );
 }

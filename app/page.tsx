@@ -6,7 +6,6 @@ import Link from "next/link";
 export default async function Home() {
   return (
     <>
-      <main className=" flex flex-col gap-6">
       <div className="relative w-full max-w-3xl mx-auto aspect-[16/9]">
                       <p className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 absolute top-4 left-6 z-10">
                           Scrapless
@@ -19,7 +18,6 @@ export default async function Home() {
                           priority
                       />
                   </div>
-                  <div className="p-4">
                       <div className="mx-3">
                           <div className="flex justify-between my-4">
                               <h2 className="text-2xl sm:text-2xl font-bold text-gray-900 inline-flex">
@@ -63,7 +61,9 @@ export default async function Home() {
                                   height={350}
                                   className="my-7" unoptimized
                               />
-                              <Button> Post yours!</Button>
+                              <Button> 
+                              <Link href="/add-product">Post yours! </Link>
+                                </Button>
                           </div>
                           <div className="my-7">
                               <h2 className="font-bold text-2xl">Why we should we care about food waste?</h2>
@@ -93,7 +93,6 @@ export default async function Home() {
                               <p className="mt-7">You save money, support local businesses, and reduce waste—all while enjoying great quality.</p>
                           </div>
                       </div>
-                  </div>
                   <footer className="bg-[#14213D] text-white p-3 space-y-4">
                       <div className="flex justify-between items-center">
                           <div>
@@ -145,7 +144,6 @@ export default async function Home() {
                           </ul>
                       </div>
                   </footer>
-      </main>
     </>
   );
 }
