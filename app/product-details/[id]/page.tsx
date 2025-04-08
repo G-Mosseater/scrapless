@@ -7,6 +7,7 @@ import { addToCart } from "@/services/cart"
 import { createClient } from "@/lib/supabase/client"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
+import BananarchyIconTitle from "@/components/bananarchy-icon-title"
 
 export default function ProductDetailPage() {
   const { id } = useParams()
@@ -62,32 +63,33 @@ export default function ProductDetailPage() {
   if (error || !product) return <p className="p-4">Product not found</p>
 
   return (
-    <div className="max-w-sm mx-auto bg-white rounded-xl overflow-hidden p-6 flex flex-col items-center gap-4">
-      <Image
-        src="/images/logo.png"
-        alt="Scrapless logo"
-        width={40}
-        height={40}
-      />
+    <div className="bg-white rounded-xl overflow-hidden flex flex-col items-center">
+      <div className="w-full max-w-96 mx-auto my-5">
+        <BananarchyIconTitle />
+      </div>
+
 
       <Image
         src={product.image_url || "/images/card.jpg"}
         alt={product.name}
         width={220}
         height={160}
-        className="rounded-lg"
+        className="rounded-lg max-w-96 w-full h-auto"
       />
-
-      <h1 className="text-2xl font-semibold text-[#14213D]">{product.name}</h1>
-      <p className="text-xl text-[#14213D] font-semibold">{product.price}$</p>
-
-      <div className="flex items-center gap-4">
-        <Button onClick={() => setQuantity((q) => Math.max(1, q - 1))}>-</Button>
-        <span className="text-lg">{quantity} Kg</span>
-        <Button onClick={() => setQuantity((q) => q + 1)}>+</Button>
+      <div className="flex justify-between w-11/12 mt-14 max-w-96">
+        <h1 className="text-2xl font-semibold text-[#14213D] text-left">{product.name}</h1>
+        <p className="text-xl text-[#14213D] font-semibold text-right">{product.price}$</p>
+      </div>
+      <div className="flex justify-between w-11/12 my-4 max-w-96">
+        <h2>rating placeholder</h2>
+        <div className="flex items-center gap-4">
+          <Button onClick={() => setQuantity((q) => Math.max(1, q - 1))}>-</Button>
+          <span className="text-lg">{quantity} Kg</span>
+          <Button onClick={() => setQuantity((q) => q + 1)}>+</Button>
+        </div>
       </div>
 
-      <div className="text-sm text-gray-600 text-center px-2">
+      <div className="text-sm text-gray-600 text-center px-2 my-6 max-w-96">
         <strong>Description:</strong>
         <p>{product.description}</p>
       </div>
