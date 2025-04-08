@@ -147,7 +147,7 @@ export const signInWithOAuth = async () => {
     provider: 'google', 
     options: {
 
-      redirectTo: 'http://localhost:3000/home', 
+      redirectTo: 'http://localhost:3000', 
 
     },
 
