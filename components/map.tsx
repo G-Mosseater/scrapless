@@ -57,11 +57,11 @@ export default function Map() {
     }
 
     return (
-        <MapContainer center={[40.4168, -3.7038]} zoom={13} className="h-[500px] w-full">
-            <TileLayer
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-            <LocationMarker />
-        </MapContainer>
+        <div className="flex flex-col h-screen bg-[#ECE6DA]"> {/* Esto da el espacio necesario para la top bar */}
+            <MapContainer center={[40.4168, -3.7038]} zoom={13} className="h-full w-full">
+                <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+                <LocationMarker />
+            </MapContainer>
+        </div>
     );
 }

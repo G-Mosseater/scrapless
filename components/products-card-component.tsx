@@ -45,7 +45,7 @@ function ProductsComponent({ searchTerm, selectedCategory }: ProductsComponentPr
         filteredProducts.map((product) => (
           <Card
             key={product.id}
-            className="w-[130px] h-[190px] border-2 border-[#14213D] rounded-2xl overflow-hidden"
+            className="w-[130px] h-[190px] border-[1px] border-[#14213D] rounded-2xl overflow-hidden"
           >
             <CardContent className="flex justify-center items-center p-0 h-[160px]">
               <Image

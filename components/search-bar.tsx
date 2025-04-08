@@ -24,20 +24,11 @@ export default function SearchBar({ searchTerm, setSearchTerm }: SearchBarProps)
             </div>
 
             <Input
-                className="w-full h-full pl-16 pr-16 placeholder-black border-2 font-[sans-serif]"
+                className="w-full h-full pl-20 pr-16 placeholder-black border-[1px] font-[sans-serif]"
                 placeholder="Search"
                 value={searchTerm}
                 onChange={handleChange}
             />
-
-            <div className="absolute right-4 top-1/2 -translate-y-1/2 bg-[#F0AF3E] rounded-full w-[35px] h-[35px] flex items-center justify-center">
-                <Image
-                    src="/icons/mdi--filter.png"
-                    width={20}
-                    height={20}
-                    alt="Filter"
-                />
-            </div>
         </div>
     );
 }
