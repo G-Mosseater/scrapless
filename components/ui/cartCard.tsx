@@ -5,7 +5,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "./button";
 import { Plus, Minus, Home, Store, MapPin, Package, User } from "lucide-react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 export default function CartCard() {
   return (

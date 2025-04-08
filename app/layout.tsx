@@ -1,3 +1,4 @@
+import NavBar from "@/components/nav-bar";
 import "./globals.css";
 
 const defaultUrl = process.env.VERCEL_URL
@@ -10,18 +11,20 @@ export const metadata = {
   description: "Revolutionizing food waste in Gran Canaria",
 };
 
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en"  suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body className="bg-background text-foreground">
-          <main className="min-h-screen flex flex-col items-center">
-            <div className="flex flex-col gap-20 w-full max-w-[700px] ">{children}</div>
-          </main>
+        <main className="min-h-screen flex flex-col items-center">
+          <div className="flex flex-col gap-20 w-full max-w-[700px]  sm:px-6 lg:px-8">
+            {children}
+            <NavBar />
+          </div>
+        </main>
       </body>
     </html>
   );

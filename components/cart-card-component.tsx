@@ -39,7 +39,7 @@ export default function CartCardComponent({ item, onRefresh }: Props) {
       <CardContent className="flex items-center p-4">
         <div className="w-24 h-24 overflow-hidden rounded-md">
           <Image
-            src={item.products.image_url}
+            src={item.products.image_url || "/images/template-image.png"}
             alt={item.products.name}
             layout="responsive"
             width={16}
