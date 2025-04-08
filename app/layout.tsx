@@ -1,5 +1,6 @@
 import NavBar from "@/components/nav-bar";
 import "./globals.css";
+import HomePageLayout from "@/components/homepageLayout";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -20,9 +21,8 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className="bg-background text-foreground">
         <main className="min-h-screen flex flex-col items-center">
-          <div className="flex flex-col gap-20 w-full max-w-[700px]  sm:px-6 lg:px-8">
-            {children}
-            <NavBar />
+          <div className="flex flex-col gap-20 w-full  ">
+            <HomePageLayout> {children} </HomePageLayout>
           </div>
         </main>
       </body>
