@@ -45,13 +45,11 @@ export default function Page() {
                     Vegetables
                 </Button>
             </div>
+
             <ProductsComponent searchTerm={searchTerm} />
 
-                <ProductsComponent />
-
-                <div className="fixed bottom-0 left-0 w-full">
-                    <NavBar />
-                </div>
+            <div className="fixed bottom-0 left-0 w-full">
+                <NavBar />
             </div>
         </div>
     );
