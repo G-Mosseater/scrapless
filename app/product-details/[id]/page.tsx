@@ -41,7 +41,7 @@ export default function ProductDetailPage() {
       const {
         data: { user },
       } = await supabase.auth.getUser()
-      
+
       console.log(user)
 
       if (!user) throw new Error("User not logged in")
@@ -95,7 +95,7 @@ export default function ProductDetailPage() {
       </div>
 
       <Button
-        className="w-full bg-[#14213D] text-white rounded-xl mt-4"
+        size="sm"
         onClick={handleAddToCart}
       >
         Add to box
