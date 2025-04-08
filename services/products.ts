@@ -1,4 +1,4 @@
-import { supabase } from "@/lib/supabaseClient"
+import { createClient } from "@/lib/supabase/client"
 
 export type Product = {
   id: string
@@ -16,8 +16,11 @@ export type ProductUpdate = Partial<Omit<Product, "id" | "user_id" | "created_at
 
 // Create a product (Logged User)
 export async function createProduct(product: ProductUpdate) {
-  const user = (await supabase.auth.getUser()).data.user
-  if (!user) throw new Error("User not logged in")
+  const supabase = createClient()
+  const { data: userData, error: userError } = await supabase.auth.getUser()
+  const user = userData.user
+
+  if (userError || !user) throw new Error("User not logged in")
 
   const { data, error } = await supabase.from("products").insert([
     {
@@ -30,10 +33,13 @@ export async function createProduct(product: ProductUpdate) {
   return data
 }
 
-// Get User product
+// Get products created by current user
 export async function getUserProducts() {
-  const user = (await supabase.auth.getUser()).data.user
-  if (!user) throw new Error("User not logged in")
+  const supabase = createClient()
+  const { data: userData, error: userError } = await supabase.auth.getUser()
+  const user = userData.user
+
+  if (userError || !user) throw new Error("User not logged in")
 
   const { data, error } = await supabase
     .from("products")
@@ -44,16 +50,31 @@ export async function getUserProducts() {
   return data
 }
 
-// Get All products
+// Get product by ID
+export async function getProductById(id: string): Promise<Product> {
+  const supabase = createClient()
+  const { data, error } = await supabase
+    .from("products")
+    .select("*")
+    .eq("id", id)
+    .single()
+
+  if (error) throw new Error("Failed to fetch product")
+  return data
+}
+
+// Get all products
 export async function getAllProducts(): Promise<Product[]> {
+  const supabase = createClient()
   const { data, error } = await supabase.from("products").select("*")
 
   if (error) throw error
   return data
 }
 
-// Edit a product
+// Update a product
 export async function updateProduct(id: string, updatedFields: ProductUpdate) {
+  const supabase = createClient()
   const { data, error } = await supabase
     .from("products")
     .update(updatedFields)
@@ -65,6 +86,7 @@ export async function updateProduct(id: string, updatedFields: ProductUpdate) {
 
 // Delete a product
 export async function deleteProduct(id: string) {
+  const supabase = createClient()
   const { data, error } = await supabase
     .from("products")
     .delete()

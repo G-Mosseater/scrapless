@@ -49,6 +49,8 @@ export const signInAction = async (formData: FormData) => {
     password,
   });
 
+  console.log(supabase.auth.getUser())
+   
   if (error) {
     return encodedRedirect("error", "/sign-in", error.message);
   }

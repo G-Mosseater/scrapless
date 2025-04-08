@@ -13,7 +13,7 @@ export default function NavBar() {
         <div className="flex justify-around items-center w-full h-[75px] border-2 border-[#14213D] rounded-t-[10px] bg-white shadow-md">
             <div className={`flex items-center justify-center w-12 h-12 rounded-lg transition-all duration-300 
                 ${isActive("/home") ? "bg-[#F0AF3E]" : "bg-opacity-0 hover:bg-[#F0AF3E]/30"}`}>
-                <Link href="/home">
+                <Link href="/">
                     <Image src="/icons/home-rounded.png" width={40} height={40} alt="Home" />
                 </Link>
             </div>
