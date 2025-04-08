@@ -35,7 +35,7 @@ export default function CartCardComponent({ item, onRefresh }: Props) {
   }
 
   return (
-    <Card className="rounded-3xl border-[hsl(var(--blues))] w-full min-w-[420px]">
+    <Card className="rounded-3xl border-[hsl(var(--blues))] w-full ">
       <CardContent className="flex items-center p-4">
         <div className="w-24 h-24 overflow-hidden rounded-md">
           <Image
