@@ -10,11 +10,15 @@ interface Layout {
 export default function HomePageLayout({ children }: Layout) {
   const pathname = usePathname();
   const HomePage = pathname === "/";
+  const SignIn = pathname === '/sign-in';
+  const SignUp = pathname === '/sign-up'
+
+
 
   return (
       <div >
         {children}
-        {!HomePage && <NavBar />}
+        {!HomePage && !SignIn && !SignUp && <NavBar />}
       </div>
   );
 }
