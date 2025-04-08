@@ -7,9 +7,10 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card"
 
 type ProductsComponentProps = {
   searchTerm: string;
+  selectedCategory: string | null;
 }
 
-function ProductsComponent({ searchTerm }: ProductsComponentProps) {
+function ProductsComponent({ searchTerm, selectedCategory }: ProductsComponentProps) {
   const [products, setProducts] = useState<Product[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -29,9 +30,11 @@ function ProductsComponent({ searchTerm }: ProductsComponentProps) {
     fetchProducts()
   }, [])
 
-  const filteredProducts = products.filter((product) =>
-    product.name.toLowerCase().includes(searchTerm.toLowerCase())
-  )
+  const filteredProducts = products.filter((product) => {
+    const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase())
+    const matchesCategory = selectedCategory ? product.type === selectedCategory : true
+    return matchesSearch && matchesCategory
+  })
 
   if (loading) return <p>Loading products...</p>
   if (error) return <p>Error: {error}</p>
