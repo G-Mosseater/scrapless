@@ -118,22 +118,22 @@ export default async function home() {
                             <Image
                                 src="/facebook.svg"
                                 alt="Example image"
-                                width={16}
-                                height={9}
+                                width={40}
+                                height={40}
                             /></li>
                         <li>
                             <Image
                                 src="/ion_social-github.svg"
                                 alt="Example image"
-                                width={16}
-                                height={9}
+                                width={40}
+                                height={40}
                             /></li>
                         <li>
                             <Image
                                 src="/insta.svg"
                                 alt="Example image"
-                                width={16}
-                                height={9}
+                                width={40}
+                                height={40}
                             /></li>
                     </ul>
                 </div>
