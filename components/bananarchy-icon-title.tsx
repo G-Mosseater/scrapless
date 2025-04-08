@@ -1,15 +1,20 @@
 import Image from "next/legacy/image";
 
-export default function BananarchyIconTitle({ className }) {
+export default function BananarchyIconTitle() {
   return (
-    <div className={`flex items-center gap-x-4 w-full ${className}`}> {/* Añadí className */}
-      <Image
-        src="/images/logo.png"
-        width={120}
-        height={120}
-        alt="Bananarchy logo"
-      />
-      <h1 className="font-bold text-3xl">Scrapless</h1>
+    <div className="relative w-full flex items-center">
+      <div className="absolute left-0">
+        <Image
+          src="/images/logo.png"
+          width={100}
+          height={100}
+          alt="Bananarchy logo"
+        />
+      </div>
+
+      <h1 className="mx-auto font-bold text-3xl text-center">Scrapless</h1>
     </div>
   );
 }
+
+
