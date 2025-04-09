@@ -9,14 +9,17 @@ import TopNavBar from "@/components/top-navigation-menu";
 import Link from "next/link";
 
 export default function Page() {
-    const [selected, setSelected] = useState<string | null>(null);
+    const [activeButton, setActiveButton] = useState<string | null>(null);
     const [searchTerm, setSearchTerm] = useState("");
 
+    const handleButtonClick = (buttonName: string) => {
+        setActiveButton(activeButton === buttonName ? null : buttonName);
+    };
+
     return (
-        <div className="flex flex-col items-center min-h-svh w-full mb-20 ">
+        <div className="flex flex-col items-center min-h-svh w-full mb-20">
             <div className="hidden lg:block w-full">
                 <TopNavBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-
             </div>
 
             <div className="block lg:hidden fixed top-0 left-0 w-full bg-white z-50 shadow-md">
@@ -28,38 +31,36 @@ export default function Page() {
 
             <div className="block h-[150px]"></div>
 
-            <div className="flex justify-center gap-x-6 pt-10">
+            <div className="flex justify-center gap-x-6 pt-5 pb-5">
                 <Button
-                    className={`${selected === "fruit"
-                        ? "bg-[#F0AF3E] text-white"
-                        : "bg-[#14213D] text-white"
-                        } hover:bg-opacity-80 transition duration-300`}
-                    onClick={() => setSelected("fruit")}
+                    className={`${
+                        activeButton === "fruit" ? "bg-[#F0AF3E] text-white" : "bg-[#14213D] text-white"
+                    } hover:bg-opacity-80 transition duration-300`}
+                    onClick={() => handleButtonClick("fruit")}
                 >
                     Fruits
                 </Button>
+
                 <Button
-                    className={`${selected === "vegetable"
-                        ? "bg-[#F0AF3E] text-white"
-                        : "bg-[#14213D] text-white"
-                        } hover:bg-opacity-80 transition duration-300`}
-                    onClick={() => setSelected("vegetable")}
+                    className={`${
+                        activeButton === "vegetable" ? "bg-[#F0AF3E] text-white" : "bg-[#14213D] text-white"
+                    } hover:bg-opacity-80 transition duration-300`}
+                    onClick={() => handleButtonClick("vegetable")}
                 >
                     Vegetables
                 </Button>
 
                 <Button>
-                    <Link href='/add-product'>Create ad</Link></Button>
-
+                    <Link href="/add-product">Create ad</Link>
+                </Button>
             </div>
 
             <div>
                 <ProductsComponent
                     searchTerm={searchTerm}
-                    selectedCategory={selected}
+                    selectedCategory={activeButton}
                 />
             </div>
-
         </div>
     );
 }
