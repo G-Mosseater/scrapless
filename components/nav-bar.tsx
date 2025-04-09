@@ -12,10 +12,10 @@ export default function NavBar() {
   const isActive = (path: string) => pathname === path;
 
   return (
-    <div className="fixed bottom-0 left-0 z-50 flex justify-around items-center w-full h-[75px] border-t-2 border-[#14213D] rounded-t-[10px] bg-white shadow-md">
+    <div className="fixed bottom-0 left-0 z-50 flex justify-around items-center w-full h-[75px] border-t-2 border-[#14213D] rounded-t-[10px] bg-white shadow-md lg:hidden">
       <div
         className={`flex items-center justify-center w-12 h-12 rounded-lg transition-all duration-300 
-                ${isActive("/home") ? "bg-[#F0AF3E]" : "bg-opacity-0 hover:bg-[#F0AF3E]"}`}
+                ${isActive("/") ? "bg-[#F0AF3E]" : "bg-opacity-0 hover:bg-[#F0AF3E]"}`}
       >
         <Link href="/">
           <Image
@@ -45,6 +45,15 @@ export default function NavBar() {
         </Link>
       </div>
 
+
+      <div
+        className={`flex items-center justify-center w-12 h-12 rounded-lg transition-all duration-300 
+                ${isActive("/myBox") ? "bg-[#F0AF3E]" : "bg-opacity-0 hover:bg-[#F0AF3E]"}`}
+      >
+        <Link href="/myBox">
+          <Image src="/icons/box-bold.png" width={40} height={40} alt="Box" />
+        </Link>
+      </div>
 
       <div
         className={`flex items-center justify-center w-12 h-12 rounded-lg transition-all duration-300 

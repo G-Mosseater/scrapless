@@ -6,6 +6,7 @@ import BananarchyIconTitle from "@/components/bananarchy-icon-title";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import TopNavBar from "@/components/top-navigation-menu";
+import BananarchyIcon from "@/components/bananarchy-icon";
 
 export default function CartPage() {
   const [cartItems, setCartItems] = useState([]);
@@ -22,12 +23,16 @@ export default function CartPage() {
         <div className="hidden lg:block fixed">
           <TopNavBar searchTerm={""} setSearchTerm={function (term: string): void {
             throw new Error("Function not implemented.");
-          } } />
+          }} />
         </div>
 
-        <div className="lg:hidden">
-          <BananarchyIconTitle />
+        <div className="block lg:hidden fixed top-0 left-0 w-full h-[120px] bg-white z-50 shadow-md">
+          <div className="flex items-center justify-center h-full">
+            <BananarchyIconTitle />
+          </div>
         </div>
+
+
         <div className="flex flex-col items-center mt-6 lg:mt-40 mb-6">
           <h2 className="text-3xl font-bold mt-2">My Box</h2>
           <Image

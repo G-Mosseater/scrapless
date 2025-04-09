@@ -28,7 +28,7 @@ export default function Page() {
 
             <div className="block h-[150px]"></div>
 
-            <div className="flex justify-center gap-x-6 pt-5">
+            <div className="flex justify-center gap-x-6 pt-10">
                 <Button
                     className={`${selected === "fruit"
                             ? "bg-[#F0AF3E] text-white"
