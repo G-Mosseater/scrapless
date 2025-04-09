@@ -6,7 +6,7 @@ import Link from "next/link";
 export default async function Home() {
   return (
     <>
-      <div className="relative w-full max-w-3xl mx-auto aspect-[16/9]">
+      <div className="relative w-full mx-auto aspect-[16/9]">
         <p className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 absolute top-4 left-6 z-10">
           Scrapless
         </p>
@@ -18,7 +18,7 @@ export default async function Home() {
           priority
         />
       </div>
-      <div className="mx-3 max-w-3xl">
+      <div className="mx-3">
         <div className="flex justify-between my-4">
           <h2 className="text-2xl sm:text-2xl font-bold text-gray-900 inline-flex">
             A smarter way to save food and reduce waste!
@@ -36,7 +36,7 @@ export default async function Home() {
         </div>
 
 
-        <div className="mx-auto text-left space-y-4 my-4 max-w-3xl">
+        <div className="mx-auto text-left space-y-4 my-4">
           <h2 className="font-bold text-xl">Our Mission</h2>
           <p className="whitespace-pre-line">We’re transforming food waste in Gran Canaria by connecting farmers, businesses, and communities.</p>
 
@@ -49,7 +49,7 @@ export default async function Home() {
             className="mx-auto" unoptimized
           />
         </div>
-        <div className="flex flex-col items-center space-y-4 my-1 max-w-3xl">
+        <div className="flex flex-col items-center space-y-4 my-1">
           <Button asChild>
             <Link href="/list">Check our storage!</Link>
           </Button>
@@ -65,7 +65,7 @@ export default async function Home() {
             <Link href="/add-product">Post yours! </Link>
           </Button>
         </div>
-        <div className="my-7 max-w-3xl">
+        <div className="my-7">
           <h2 className="font-bold text-2xl">Why we should we care about food waste?</h2>
           <Image
             src="/icons/dust-bin.gif"
@@ -80,7 +80,7 @@ export default async function Home() {
 
           <p>These efforts are part of a broader commitment to sustainability and food security in the region.</p>
         </div>
-        <div className="my-4 max-w-3xl">
+        <div className="my-4">
           <Image
             src="/icons/farmer.gif"
             alt="Example image"
