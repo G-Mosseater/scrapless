@@ -8,6 +8,7 @@ import {
 } from "react-leaflet";
 import { useEffect, useState } from "react";
 import "leaflet/dist/leaflet.css";
+import TopNavBar from "@/components/top-navigation-menu";
 import NavBar from "@/components/nav-bar";
 import L from "leaflet";
 
@@ -15,6 +16,8 @@ export default function MapPage() {
   const [position, setPosition] = useState<[number, number] | null>(null);
   const [mapCenter, setMapCenter] = useState<[number, number]>([40.4168, -3.7038]);
   const [placeInfo, setPlaceInfo] = useState<any>(null);
+  const [selected, setSelected] = useState<string | null>(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
   // Configure Leaflet Icons
   delete (L.Icon.Default.prototype as any)._getIconUrl;
@@ -81,9 +84,6 @@ export default function MapPage() {
 
   return (
     <div>
-
-      {/* Top Nav Bar */}
-      <TopNavBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 
 
       <div className="flex flex-col h-screen bg-[#ECE6DA] relative">
