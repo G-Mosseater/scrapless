@@ -128,35 +128,39 @@ const useSupabaseUpload = (options: UseSupabaseUploadOptions) => {
         : files
 
     const responses = await Promise.all(
-      filesToUpload.map(async (file) => {
-        const filePath = !!path ? `${path}/${file.name}` : file.name
+  filesToUpload.map(async (file) => {
+    const filePath = !!path ? `${path}/${file.name}` : file.name
 
-        const { error } = await supabase.storage
-          .from(bucketName)
-          .upload(filePath, file, {
-            cacheControl: cacheControl.toString(),
-            upsert,
-          })
+    console.log("Uploading file to Supabase:", {
+      bucketName,
+      filePath,
+      file,
+    })
 
-        if (error) {
-          return { name: file.name, message: error.message }
-        } else {
-          // ✅ Obtener la URL pública
-          const publicUrl = supabase
-            .storage
-            .from(bucketName)
-            .getPublicUrl(filePath).data.publicUrl
-
-          // ✅ Llamar al callback si está definido
-          if (options.onUploadComplete && publicUrl) {
-            options.onUploadComplete(publicUrl)
-          }
-
-          return { name: file.name, message: undefined }
-        }
-
+    const { error } = await supabase.storage
+      .from(bucketName)
+      .upload(filePath, file, {
+        cacheControl: cacheControl.toString(),
+        upsert,
       })
-    )
+
+    if (error) {
+      console.error("Upload failed:", error) // 👈 Aquí
+      return { name: file.name, message: error.message }
+    } else {
+      const publicUrl = supabase.storage
+        .from(bucketName)
+        .getPublicUrl(filePath).data.publicUrl
+
+      if (options.onUploadComplete && publicUrl) {
+        options.onUploadComplete(publicUrl)
+      }
+
+      return { name: file.name, message: undefined }
+    }
+  })
+)
+
 
     const responseErrors = responses.filter((x) => x.message !== undefined)
     // if there were errors previously, this function tried to upload the files again so we should clear/overwrite the existing errors.
