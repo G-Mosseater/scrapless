@@ -31,8 +31,8 @@ export default function Page() {
             <div className="flex justify-center gap-x-6 pt-10">
                 <Button
                     className={`${selected === "fruit"
-                            ? "bg-[#F0AF3E] text-white"
-                            : "bg-[#14213D] text-white"
+                        ? "bg-[#F0AF3E] text-white"
+                        : "bg-[#14213D] text-white"
                         } hover:bg-opacity-80 transition duration-300`}
                     onClick={() => setSelected("fruit")}
                 >
@@ -40,8 +40,8 @@ export default function Page() {
                 </Button>
                 <Button
                     className={`${selected === "vegetable"
-                            ? "bg-[#F0AF3E] text-white"
-                            : "bg-[#14213D] text-white"
+                        ? "bg-[#F0AF3E] text-white"
+                        : "bg-[#14213D] text-white"
                         } hover:bg-opacity-80 transition duration-300`}
                     onClick={() => setSelected("vegetable")}
                 >
@@ -53,12 +53,12 @@ export default function Page() {
 
             </div>
 
-            <div className="">
-                    <ProductsComponent
-                        searchTerm={searchTerm}
-                        selectedCategory={selected}
-                    />
-                </div>
+            <div>
+                <ProductsComponent
+                    searchTerm={searchTerm}
+                    selectedCategory={selected}
+                />
+            </div>
 
         </div>
     );
