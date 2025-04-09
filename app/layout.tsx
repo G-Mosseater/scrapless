@@ -1,4 +1,4 @@
-import NavBar from "@/components/nav-bar";
+
 import "./globals.css";
 import HomePageLayout from "@/components/homepageLayout";
 
