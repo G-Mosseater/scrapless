@@ -1,5 +1,4 @@
 "use client";
-
 import {
   MapContainer,
   TileLayer,
@@ -9,14 +8,13 @@ import {
 } from "react-leaflet";
 import { useEffect, useState } from "react";
 import "leaflet/dist/leaflet.css";
-import TopNavBar from "@/components/top-navigation-menu";
+import NavBar from "@/components/nav-bar";
 import L from "leaflet";
 
 export default function MapPage() {
   const [position, setPosition] = useState<[number, number] | null>(null);
   const [mapCenter, setMapCenter] = useState<[number, number]>([40.4168, -3.7038]);
   const [placeInfo, setPlaceInfo] = useState<any>(null);
-  const [searchTerm, setSearchTerm] = useState("");  // Para pasar el search term a TopNavBar
 
   // Configure Leaflet Icons
   delete (L.Icon.Default.prototype as any)._getIconUrl;
