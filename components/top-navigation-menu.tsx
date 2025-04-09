@@ -31,13 +31,11 @@ export default function TopNavBar({
   return (
     <div className="w-full fixed top-0 left-0 bg-white z-50 shadow-md">
       <div className="flex items-center justify-between px-4 py-4 w-full max-w-7xl mx-auto gap-4 flex-wrap lg:flex-nowrap">
-        {/* Izquierda: Icono + SearchBar */}
         <div className="flex items-center gap-4 flex-shrink-0">
           <BananarchyIcon />
           <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
         </div>
 
-        {/* Derecha: Botones como NavigationMenu */}
         <NavigationMenu>
           <NavigationMenuList className="flex flex-wrap gap-2 justify-center lg:justify-end">
             {menuItems.map(({ name, path }) => {

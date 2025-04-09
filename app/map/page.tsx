@@ -1,5 +1,4 @@
 "use client";
-
 import {
   MapContainer,
   TileLayer,
@@ -9,14 +8,13 @@ import {
 } from "react-leaflet";
 import { useEffect, useState } from "react";
 import "leaflet/dist/leaflet.css";
-import TopNavBar from "@/components/top-navigation-menu";
+import NavBar from "@/components/nav-bar";
 import L from "leaflet";
 
 export default function MapPage() {
   const [position, setPosition] = useState<[number, number] | null>(null);
   const [mapCenter, setMapCenter] = useState<[number, number]>([40.4168, -3.7038]);
   const [placeInfo, setPlaceInfo] = useState<any>(null);
-  const [searchTerm, setSearchTerm] = useState("");  // Para pasar el search term a TopNavBar
 
   // Configure Leaflet Icons
   delete (L.Icon.Default.prototype as any)._getIconUrl;
@@ -82,23 +80,18 @@ export default function MapPage() {
   }
 
   return (
-    <div className="flex flex-col h-screen bg-[#ECE6DA] pb-16 pt-9">
-      {/* Top Nav Bar */}
-      <TopNavBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-
+    <div className="flex flex-col h-screen bg-[#ECE6DA] pb-16">
       {/* Map */}
-      <div className="flex-grow pt-[100px]"> {/* Ajustamos el padding-top para dar espacio a la top bar */}
-        <div className="h-full rounded-b-3xl overflow-hidden shadow-lg">
-          <MapContainer center={mapCenter} zoom={13} className="h-full w-full">
-            <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-            <LocationMarker />
-            <FlyToLocation position={position} />
-          </MapContainer>
-        </div>
+      <div className="h-1/2 rounded-b-3xl overflow-hidden shadow-lg">
+        <MapContainer center={mapCenter} zoom={13} className="h-full w-full">
+          <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+          <LocationMarker />
+          <FlyToLocation position={position} />
+        </MapContainer>
       </div>
 
       {/* Information */}
-      <div className="h-1/4 flex flex-col items-center justify-cente">
+      <div className="h-1/2 flex flex-col items-center justify-center px-6 py-8">
         <div className="bg-white rounded-2xl shadow-xl p-6 w-full max-w-xl text-center animate-fade-in border-2 border-[#F0AF3E]">
           {placeInfo ? (
             <>
@@ -112,6 +105,11 @@ export default function MapPage() {
             </p>
           )}
         </div>
+      </div>
+
+      {/* Navbar */}
+      <div className="fixed bottom-0 left-0 w-full bg-[#14213D]">
+        <NavBar />
       </div>
     </div>
   );
