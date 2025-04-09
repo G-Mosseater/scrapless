@@ -17,7 +17,7 @@ export default function CartPage() {
   return (
     <>
 
-      <div className="flex flex-col justify-evenly min-h-screen bg-[#FFFFFF] px-4 text-[#14213D]">
+<div className="flex flex-col justify-between min-h-svh bg-[#FFFFFF] mb-20 px-4 text-[#14213D]">
         
         <div className="hidden lg:block fixed">
           <TopNavBar searchTerm={""} setSearchTerm={function (term: string): void {
@@ -41,12 +41,12 @@ export default function CartPage() {
 
         <CartList onCartChange={setCartItems} />
 
-        <div className="flex flex-col items-center justify-center space-y-4 mt-6">
+        <div className="flex flex-col items-center justify-center space-y-4 m-6">
           <div className="flex justify-between w-full px-4 text-lg font-semibold">
             <span>Total Amount</span>
             <span>{calculateTotal().toFixed(2)} $</span>
           </div>
-          <Button className="bg-[#14213D] text-white text-lg font-bold px-8 py-3 rounded-xl hover:bg-[#1d2b50]">
+          <Button >
             Buy
           </Button>
         </div>

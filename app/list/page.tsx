@@ -13,7 +13,7 @@ export default function Page() {
     const [searchTerm, setSearchTerm] = useState("");
 
     return (
-        <div className="flex flex-col items-center min-h-screen w-full ">
+        <div className="flex flex-col items-center min-h-svh w-full mb-20 ">
             <div className="hidden lg:block w-full">
                 <TopNavBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 
