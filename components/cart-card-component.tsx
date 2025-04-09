@@ -36,7 +36,7 @@ export default function CartCardComponent({ item, onRefresh }: Props) {
 
   return (
     <Card className="rounded-3xl border-[hsl(var(--blues))] w-full ">
-      <CardContent className="flex items-center p-4">
+      <CardContent className="flex items-center p-4 w-full">
         <div className="w-24 h-24 overflow-hidden rounded-md">
           <Image
             src={item.products.image_url || "/images/template-image.png"}
