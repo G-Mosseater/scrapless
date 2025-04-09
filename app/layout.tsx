@@ -1,3 +1,4 @@
+
 import "./globals.css";
 import HomePageLayout from "@/components/homepageLayout";
 
@@ -19,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body >
-        <main className="min-h-screen flex flex-col items-center w-full">
+        <main className="min-h-screen flex flex-col items-center w-full ">
           <div className="flex flex-col gap-8 w-full max-w-7xl mx-auto ">
             <HomePageLayout>{children}</HomePageLayout>
           </div>
