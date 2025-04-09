@@ -34,9 +34,12 @@ export default function CartList({ onCartChange }: CartListProps) {
   if (error) return <p>Error: {error}</p>
 
   return (
-    <div >
-      {cartItems.map((item) => (
-        <CartCardComponent key={item.id} item={item} onRefresh={fetchCartItems}/>
+
+    <div className="space-y-5">
+      {cartItems.map(item => (
+        <div key={item.id} className="flex justify-between items-center">
+          <CartCardComponent key={item.id} item={item} onRefresh={fetchCartItems} />
+        </div>
       ))}
     </div>
   )
