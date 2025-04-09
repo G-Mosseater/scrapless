@@ -51,7 +51,7 @@ const AddProduct = () => {
   }
 
   return (
-    <div className="flex flex-col min-h-svh w-full items-center justify-between px-4 pt-4">
+    <div className="flex flex-col min-h-svh w-full items-center px-4 pt-4">
       <FileUpload onUploadComplete={(url) => setImageUrl(url)} />
 
       <div className="flex flex-col gap-4 w-full max-w-md">

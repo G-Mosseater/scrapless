@@ -5,10 +5,9 @@ import {
   NavigationMenuItem,
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
-import SearchBar from "@/components/search-bar";
-import BananarchyIcon from "@/components/bananarchy-icon";
 import { Button } from "@/components/ui/button";
 import { usePathname, useRouter } from "next/navigation";
+import BananarchyIcon from "@/components/bananarchy-icon"; // Importa el componente de la imagen
 
 export default function TopNavBar({
   searchTerm,
@@ -21,32 +20,32 @@ export default function TopNavBar({
   const router = useRouter();
 
   const menuItems = [
-    { name: "Home", path: "/home" },
+    { name: "Home", path: "/" },
     { name: "Shop", path: "/list" },
     { name: "Map", path: "/map" },
-    { name: "Profile", path: "/profile" },
     { name: "MyBox", path: "/myBox" },
+    { name: "Profile", path: "/my-profile" },
   ];
 
   return (
     <div className="w-full fixed top-0 left-0 bg-white z-50 shadow-md">
       <div className="flex items-center justify-between px-4 py-4 w-full max-w-7xl mx-auto gap-4 flex-wrap lg:flex-nowrap">
-        {/* Izquierda: Icono + SearchBar */}
-        <div className="flex items-center gap-4 flex-shrink-0">
+        
+        {/* Imagen centrada */}
+        <div className="flex  items-center flex-grow">
           <BananarchyIcon />
-          <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
         </div>
 
-        {/* Derecha: Botones como NavigationMenu */}
-        <NavigationMenu>
-          <NavigationMenuList className="flex flex-wrap gap-2 justify-center lg:justify-end">
+        {/* Menú de navegación con espacio balanceado */}
+        <NavigationMenu className="flex justify-between w-full flex-grow">
+          <NavigationMenuList className="flex gap-4 w-full justify-center">
             {menuItems.map(({ name, path }) => {
               const isActive = pathname === path;
 
               return (
                 <NavigationMenuItem key={name}>
                   <Button
-                    className= {`${
+                    className={`${
                       isActive
                         ? "bg-[#F0AF3E] text-white"
                         : "bg-[#14213D] text-white"

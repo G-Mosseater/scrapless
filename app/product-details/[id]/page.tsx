@@ -52,7 +52,7 @@ export default function ProductDetailPage() {
       })
 
       alert("Product added successfully")
-      router.push("/product-list")
+      router.push("/list")
     } catch (err) {
       console.error(err)
       alert("Failed to add product")
