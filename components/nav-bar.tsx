@@ -45,6 +45,16 @@ export default function NavBar() {
         </Link>
       </div>
 
+
+      <div
+        className={`flex items-center justify-center w-12 h-12 rounded-lg transition-all duration-300 
+                ${isActive("/myBox") ? "bg-[#F0AF3E]" : "bg-opacity-0 hover:bg-[#F0AF3E]"}`}
+      >
+        <Link href="/myBox">
+          <Image src="/icons/box-bold.png" width={40} height={40} alt="Box" />
+        </Link>
+      </div>
+
       <div
         className={`flex items-center justify-center w-12 h-12 rounded-lg transition-all duration-300 
                 ${isActive("/myBox") ? "bg-[#F0AF3E]" : "bg-opacity-0 hover:bg-[#F0AF3E]"}`}
