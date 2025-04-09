@@ -7,9 +7,9 @@ export default async function Home() {
   return (
     <>
       <div className="relative w-full mx-auto aspect-[16/9]">
-        <p className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 absolute top-4 left-6 z-10">
+        <h1 className="text-xl sm:text-2xl md:text-3xl font-bold absolute top-4 left-6 z-10">
           Scrapless
-        </p>
+        </h1>
         <Image
           src="/food-wast.svg"
           alt="Madspild illustration"
@@ -20,7 +20,7 @@ export default async function Home() {
       </div>
       <div className="mx-3">
         <div className="flex justify-between my-4">
-          <h2 className="text-2xl sm:text-2xl font-bold text-gray-900 inline-flex">
+          <h2 className="text-2xl sm:text-2xl font-bold inline-flex">
             A smarter way to save food and reduce waste!
           </h2>
           <div>

@@ -1,12 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Changa:wght@200..800&family=Lusitana:wght@400;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Changa:wght@200..800&family=Lusitana:wght@400;700&display=swap');
 
 :root {
   --font-quicksand: 'Quicksand', sans-serif;
+  --font-changa: 'Changa', sans-serif;
+  --text-color: #14213D;
 }
 
 body {
@@ -21,7 +24,7 @@ body {
     --background: 0 0% 100%;
     --foreground: 0 0% 3.9%;
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
+    --card-foreground: #14213D;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 3.9%;
     --primary: 0 0% 9%;
@@ -84,7 +87,11 @@ body {
   * {
     @apply border-border;
   }
+   h1, h2, h3, h4, h5, h6 {
+    @apply font-changa;
+  }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background;
+    color: var(--text-color);
   }
 }
