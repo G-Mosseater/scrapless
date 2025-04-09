@@ -20,7 +20,9 @@ export default function CartPage() {
       <div className="flex flex-col justify-evenly min-h-screen bg-[#FFFFFF] px-4 text-[#14213D]">
         
         <div className="hidden lg:block fixed">
-          <TopNavBar />
+          <TopNavBar searchTerm={""} setSearchTerm={function (term: string): void {
+            throw new Error("Function not implemented.");
+          } } />
         </div>
 
         <div className="lg:hidden">
