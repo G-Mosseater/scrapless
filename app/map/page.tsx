@@ -82,37 +82,45 @@ export default function MapPage() {
   }
 
   return (
-    <div className="flex flex-col h-screen bg-[#ECE6DA] pb-16 pt-9">
+    <div>
+
       {/* Top Nav Bar */}
       <TopNavBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 
-      {/* Map */}
-      <div className="flex-grow pt-[100px]"> {/* Ajustamos el padding-top para dar espacio a la top bar */}
-        <div className="h-full rounded-b-3xl overflow-hidden shadow-lg">
+
+      <div className="flex flex-col h-screen bg-[#ECE6DA] relative">
+        {/* Map */}
+        <div className="absolute inset-0 z-0 rounded-b-3xl overflow-hidden">
           <MapContainer center={mapCenter} zoom={13} className="h-full w-full">
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
             <LocationMarker />
             <FlyToLocation position={position} />
           </MapContainer>
         </div>
-      </div>
 
-      {/* Information */}
-      <div className="h-1/4 flex flex-col items-center justify-cente">
-        <div className="bg-white rounded-2xl shadow-xl p-6 w-full max-w-xl text-center animate-fade-in border-2 border-[#F0AF3E]">
-          {placeInfo ? (
-            <>
-              <h2 className="text-2xl font-bold text-[#14213D]">{placeInfo.name}</h2>
-              <p className="text-lg text-[#14213D] mt-3">⭐ {placeInfo.rating} / 5</p>
-              <p className="text-lg text-[#14213D] mt-1">🕒 {placeInfo.hours}</p>
-            </>
-          ) : (
-            <p className="text-[#14213D] text-lg opacity-60">
-              Click on the map to see information about the place
-            </p>
-          )}
+        {/* Nav */}
+        <div className="z-10">
+          <TopNavBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+        </div>
+
+        {/* Info */}
+        <div className="z-10 absolute bottom-0 left-0 right-0 flex justify-center pb-6">
+          <div className="bg-white rounded-2xl shadow-xl p-6 w-full max-w-xl text-center animate-fade-in border-2 border-[#F0AF3E]">
+            {placeInfo ? (
+              <>
+                <h2 className="text-2xl font-bold text-[#14213D]">{placeInfo.name}</h2>
+                <p className="text-lg text-[#14213D] mt-3">⭐ {placeInfo.rating} / 5</p>
+                <p className="text-lg text-[#14213D] mt-1">🕒 {placeInfo.hours}</p>
+              </>
+            ) : (
+              <p className="text-[#14213D] text-lg opacity-60">
+                Click on the map to see information about the place
+              </p>
+            )}
+          </div>
         </div>
       </div>
+
     </div>
   );
 }
