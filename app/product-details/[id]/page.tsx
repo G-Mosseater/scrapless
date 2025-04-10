@@ -63,7 +63,7 @@ export default function ProductDetailPage() {
   if (error || !product) return <p className="p-4">Product not found</p>
 
   return (
-    <div className="bg-white rounded-xl overflow-hidden flex flex-col items-center">
+    <div className="bg-white rounded-xl overflow-hidden flex flex-col items-center ">
       <div className="w-full max-w-96 mx-auto my-5">
         <BananarchyIconTitle />
       </div>
