@@ -7,8 +7,16 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import TopNavBar from "@/components/top-navigation-menu";
 
+
+type CartItem = {
+  price: number;
+};
+
+
+
+
 export default function CartPage() {
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
   const calculateTotal = () => {
     return cartItems.reduce((total, item) => total + item.price, 0);
