@@ -74,7 +74,7 @@ export default function ProductDetailPage() {
         alt={product.name}
         width={220}
         height={160}
-        className="rounded-lg max-w-96 w-full h-auto"
+        className="rounded-lg max-w-96 w-full max-h-96 h-auto object-cover"
       />
       <div className="flex justify-between w-11/12 mt-14 max-w-96">
         <h1 className="text-2xl font-semibold text-[#14213D] text-left">{product.name}</h1>
