@@ -15,6 +15,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import { useRouter } from "next/navigation"
+
 
 const AddProduct = () => {
   const [name, setName] = useState("")
@@ -24,6 +26,8 @@ const AddProduct = () => {
   const [type, setType] = useState<"fruit" | "vegetable" | "">("")
   const [imageUrl, setImageUrl] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
+
+  const router = useRouter()
 
   const handleSubmit = async () => {
     if (!name || !price || !quantity || !type || !imageUrl) {
@@ -42,6 +46,7 @@ const AddProduct = () => {
         image_url: imageUrl,
       })
       alert("Product created successfully!")
+      router.push("/list")
     } catch (err) {
       console.error(err)
       alert("Error creating product.")

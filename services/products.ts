@@ -1,5 +1,7 @@
 import { createClient } from "@/lib/supabase/client"
 
+const supabase = createClient()
+
 export type Product = {
   id: string
   user_id: string
@@ -16,7 +18,7 @@ export type ProductUpdate = Partial<Omit<Product, "id" | "user_id" | "created_at
 
 // Create a product (Logged User)
 export async function createProduct(product: ProductUpdate) {
-  const supabase = createClient()
+
   const { data: userData, error: userError } = await supabase.auth.getUser()
   const user = userData.user
 
@@ -35,7 +37,6 @@ export async function createProduct(product: ProductUpdate) {
 
 // Get products created by current user
 export async function getUserProducts() {
-  const supabase = createClient()
   const { data: userData, error: userError } = await supabase.auth.getUser()
   const user = userData.user
 
@@ -52,7 +53,6 @@ export async function getUserProducts() {
 
 // Get product by ID
 export async function getProductById(id: string): Promise<Product> {
-  const supabase = createClient()
   const { data, error } = await supabase
     .from("products")
     .select("*")
@@ -65,7 +65,6 @@ export async function getProductById(id: string): Promise<Product> {
 
 // Get all products
 export async function getAllProducts(): Promise<Product[]> {
-  const supabase = createClient()
   const { data, error } = await supabase.from("products").select("*")
 
   if (error) throw error
@@ -74,7 +73,6 @@ export async function getAllProducts(): Promise<Product[]> {
 
 // Update a product
 export async function updateProduct(id: string, updatedFields: ProductUpdate) {
-  const supabase = createClient()
   const { data, error } = await supabase
     .from("products")
     .update(updatedFields)
@@ -86,7 +84,6 @@ export async function updateProduct(id: string, updatedFields: ProductUpdate) {
 
 // Delete a product
 export async function deleteProduct(id: string) {
-  const supabase = createClient()
   const { data, error } = await supabase
     .from("products")
     .delete()
