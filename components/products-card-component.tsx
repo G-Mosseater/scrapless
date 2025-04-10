@@ -47,14 +47,17 @@ function ProductsComponent({ searchTerm, selectedCategory }: ProductsComponentPr
           <Link key={product.id} href={`/product-details/${product.id}`}>
             <Card className="w-[130px] h-[190px] border-[1px] border-[#14213D] rounded-2xl overflow-hidden">
               <CardContent className="flex justify-center items-center p-0 h-[160px]">
-                <Image
-                  src={product.image_url || "/images/card.jpg"}
-                  width={130}
-                  height={160}
-                  alt={product.name}
-                  className="object-cover"
-                />
+                <div className="w-[130px] h-[160px] overflow-hidden">
+                  <Image
+                    src={product.image_url || "/images/card.jpg"}
+                    width={130}
+                    height={160}
+                    alt={product.name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
               </CardContent>
+
               <CardFooter className="flex justify-center items-center h-[30px] border-[#14213D]">
                 <p className="text-sm font-semibold">{product.name}</p>
               </CardFooter>
