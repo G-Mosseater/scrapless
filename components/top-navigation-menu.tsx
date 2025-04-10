@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import { Button } from "@/components/ui/button";
 import { usePathname, useRouter } from "next/navigation";
-import BananarchyIcon from "@/components/bananarchy-icon"; // Importa el componente de la imagen
+import BananarchyIcon from "@/components/bananarchy-icon";
 
 export default function TopNavBar({
   searchTerm,
@@ -31,12 +31,10 @@ export default function TopNavBar({
     <div className="w-full fixed top-0 left-0 bg-white z-50 shadow-md">
       <div className="flex items-center justify-between px-4 py-4 w-full max-w-7xl mx-auto gap-4 flex-wrap lg:flex-nowrap">
         
-        {/* Imagen centrada */}
         <div className="flex  items-center flex-grow">
           <BananarchyIcon />
         </div>
 
-        {/* Menú de navegación con espacio balanceado */}
         <NavigationMenu className="flex justify-between w-full flex-grow">
           <NavigationMenuList className="flex gap-4 w-full justify-center">
             {menuItems.map(({ name, path }) => {

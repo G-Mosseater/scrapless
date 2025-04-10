@@ -35,9 +35,9 @@ export default function CartList({ onCartChange }: CartListProps) {
 
   return (
 
-    <div className="space-y-5">
+    <div className="space-y-5 w-full">
       {cartItems.map(item => (
-        <div key={item.id} className="flex justify-between items-center">
+        <div key={item.id} className="flex justify-between items-center w-full">
           <CartCardComponent key={item.id} item={item} onRefresh={fetchCartItems} />
         </div>
       ))}
