@@ -1,7 +1,7 @@
 "use server";
 
-import { encodedRedirect } from "@/utils/utils";
-import { createClient } from "@/utils/supabase/server";
+import { encodedRedirect } from "@/lib/utils";
+import { createClient } from '@/lib/supabase/server'
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
@@ -49,11 +49,13 @@ export const signInAction = async (formData: FormData) => {
     password,
   });
 
+  console.log(supabase.auth.getUser())
+   
   if (error) {
     return encodedRedirect("error", "/sign-in", error.message);
   }
 
-  return redirect("/protected");
+  return redirect("/");
 };
 
 export const forgotPasswordAction = async (formData: FormData) => {
@@ -132,3 +134,27 @@ export const signOutAction = async () => {
   await supabase.auth.signOut();
   return redirect("/sign-in");
 };
+
+
+
+
+
+export const signInWithOAuth = async () => {
+
+  const supabase = await createClient();
+
+  const data= await supabase.auth.signInWithOAuth({
+    provider: 'google', 
+    options: {
+
+      redirectTo: 'http://localhost:3000/auth/callback'
+
+    },
+
+  });   
+
+  if (data.data.url) {
+
+    redirect(data.data.url) // use the redirect API for your server framework
+  }
+}
