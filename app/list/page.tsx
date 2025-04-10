@@ -31,10 +31,10 @@ export default function Page() {
 
             <div className="block h-[150px]"></div>
 
-            <div className="flex justify-center gap-x-6 pt-5 pb-5">
+            <div className="flex justify-center align-center gap-x-6 pt-5 pb-5 px-2">
                 <Button
-                    className={`${
-                        activeButton === "fruit" ? "bg-[#F0AF3E] text-white" : "bg-[#14213D] text-white"
+                    className={ `${
+                        activeButton === "fruit" ? "bg-[#F0AF3E] text-white text-md" : "text-md bg-[#14213D] text-white"
                     } hover:bg-opacity-80 transition duration-300`}
                     onClick={() => handleButtonClick("fruit")}
                 >
@@ -43,14 +43,14 @@ export default function Page() {
 
                 <Button
                     className={`${
-                        activeButton === "vegetable" ? "bg-[#F0AF3E] text-white" : "bg-[#14213D] text-white"
+                        activeButton === "vegetable" ? "bg-[#F0AF3E] text-white text-md" : "text-md bg-[#14213D] text-white"
                     } hover:bg-opacity-80 transition duration-300`}
                     onClick={() => handleButtonClick("vegetable")}
                 >
                     Vegetables
                 </Button>
 
-                <Button>
+                <Button className="text-md">
                     <Link href="/add-product">Create ad</Link>
                 </Button>
             </div>

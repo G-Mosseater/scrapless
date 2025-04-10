@@ -12,7 +12,7 @@ export default function NavBar() {
   const isActive = (path: string) => pathname === path;
 
   return (
-    <div className="fixed bottom-0 left-0 z-50 flex justify-around items-center w-full h-[75px] border-t-2 border-[#14213D] rounded-t-[10px] bg-white shadow-md lg:hidden">
+    <div className="fixed bottom-0 left-0 z-50 flex justify-around items-center w-full h-[65px] border-t-2 border-[#14213D] rounded-t-[10px] bg-white shadow-md lg:hidden">
       <div
         className={`flex items-center justify-center w-12 h-12 rounded-lg transition-all duration-300 
                 ${isActive("/") ? "bg-[#F0AF3E]" : "bg-opacity-0 hover:bg-[#F0AF3E]"}`}
