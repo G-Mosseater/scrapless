@@ -40,7 +40,7 @@ export async function updateSession(request: NextRequest) {
 
   const user = data.data.user
 
-  const publicRoutes = ['/', '/sign-in', '/sign-up', '/forgot-password', '/auth/callback']
+  const publicRoutes = ['/', '/sign-in', '/sign-up', '/forgot-password', '/auth/callback', '/list' ]
   const path = request.nextUrl.pathname
   
   const isPublic = publicRoutes.some(route => path === route || path.startsWith(route + '/'))
