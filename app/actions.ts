@@ -155,6 +155,6 @@ export const signInWithOAuth = async () => {
 
   if (data.data.url) {
 
-    redirect(data.data.url) // use the redirect API for your server framework
+    redirect(data.data.url)
   }
 }
