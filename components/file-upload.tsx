@@ -1,4 +1,3 @@
-
 'use client'
 
 import {
@@ -8,15 +7,24 @@ import {
 } from "../components/dropzone"
 import { useSupabaseUpload } from "@/hooks/use-supabase-upload"
 
+type FileUploadProps = {
+  onUploadComplete: (url: string) => void
+}
 
-const FileUpload = () => {
+const FileUpload = ({ onUploadComplete }: FileUploadProps) => {
   const props = useSupabaseUpload({
-    bucketName: 'test',
-    path: 'test',
+    bucketName: 'product-images',
+    // path: 'uploads',
     allowedMimeTypes: ['image/*'],
-    maxFiles: 2,
-    maxFileSize: 1000 * 1000 * 10, // 10MB,
+    maxFiles: 1,
+    maxFileSize: 1000 * 1000 * 10,
+    upsert: true,
+    onUploadComplete: (fileUrl: string) => {
+      onUploadComplete(fileUrl)
+    }
   })
+  
+  
 
   return (
     <div className="max-w-[500px]">
@@ -25,8 +33,7 @@ const FileUpload = () => {
         <DropzoneContent />
       </Dropzone>
     </div>
-    
   )
 }
 
-export  default FileUpload
+export default FileUpload

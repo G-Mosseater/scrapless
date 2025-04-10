@@ -48,6 +48,9 @@ type UseSupabaseUploadOptions = {
    * When set to false, an error is thrown if the object already exists. Defaults to `false`
    */
   upsert?: boolean
+
+  onUploadComplete?: (url: string) => void
+
 }
 
 type UseSupabaseUploadReturn = ReturnType<typeof useSupabaseUpload>
@@ -83,14 +86,14 @@ const useSupabaseUpload = (options: UseSupabaseUploadOptions) => {
       const validFiles = acceptedFiles
         .filter((file) => !files.find((x) => x.name === file.name))
         .map((file) => {
-          ;(file as FileWithPreview).preview = URL.createObjectURL(file)
-          ;(file as FileWithPreview).errors = []
+          ; (file as FileWithPreview).preview = URL.createObjectURL(file)
+            ; (file as FileWithPreview).errors = []
           return file as FileWithPreview
         })
 
       const invalidFiles = fileRejections.map(({ file, errors }) => {
-        ;(file as FileWithPreview).preview = URL.createObjectURL(file)
-        ;(file as FileWithPreview).errors = errors
+        ; (file as FileWithPreview).preview = URL.createObjectURL(file)
+          ; (file as FileWithPreview).errors = errors
         return file as FileWithPreview
       })
 
@@ -119,26 +122,45 @@ const useSupabaseUpload = (options: UseSupabaseUploadOptions) => {
     const filesToUpload =
       filesWithErrors.length > 0
         ? [
-            ...files.filter((f) => filesWithErrors.includes(f.name)),
-            ...files.filter((f) => !successes.includes(f.name)),
-          ]
+          ...files.filter((f) => filesWithErrors.includes(f.name)),
+          ...files.filter((f) => !successes.includes(f.name)),
+        ]
         : files
 
     const responses = await Promise.all(
-      filesToUpload.map(async (file) => {
-        const { error } = await supabase.storage
-          .from(bucketName)
-          .upload(!!path ? `${path}/${file.name}` : file.name, file, {
-            cacheControl: cacheControl.toString(),
-            upsert,
-          })
-        if (error) {
-          return { name: file.name, message: error.message }
-        } else {
-          return { name: file.name, message: undefined }
-        }
+  filesToUpload.map(async (file) => {
+    const filePath = !!path ? `${path}/${file.name}` : file.name
+
+    console.log("Uploading file to Supabase:", {
+      bucketName,
+      filePath,
+      file,
+    })
+
+    const { error } = await supabase.storage
+      .from(bucketName)
+      .upload(filePath, file, {
+        cacheControl: cacheControl.toString(),
+        upsert,
       })
-    )
+
+    if (error) {
+      console.error("Upload failed:", error) // 👈 Aquí
+      return { name: file.name, message: error.message }
+    } else {
+      const publicUrl = supabase.storage
+        .from(bucketName)
+        .getPublicUrl(filePath).data.publicUrl
+
+      if (options.onUploadComplete && publicUrl) {
+        options.onUploadComplete(publicUrl)
+      }
+
+      return { name: file.name, message: undefined }
+    }
+  })
+)
+
 
     const responseErrors = responses.filter((x) => x.message !== undefined)
     // if there were errors previously, this function tried to upload the files again so we should clear/overwrite the existing errors.

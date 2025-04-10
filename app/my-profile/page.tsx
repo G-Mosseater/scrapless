@@ -1,19 +1,14 @@
 "use client";
 
 import type React from "react";
-
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { createClient } from "@/lib/supabase/client";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import { Button } from "@/components/ui/button";
-import { LogOut } from "lucide-react";
-
+import { LogOut, Save } from "lucide-react";
 import {
   Card,
   CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -24,26 +19,54 @@ import {
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
-  AlertDialogTitle,
   AlertDialogTrigger,
-} from "@radix-ui/react-alert-dialog";
-
-import {
   AlertDialogFooter,
   AlertDialogHeader,
+  AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import { Save } from "lucide-react";
 import { signOutAction } from "../actions";
 
 export default function ProfilePage() {
   const [isEditing, setIsEditing] = useState(false);
+  const [userId, setUserId] = useState<string | null>(null);
   const [profile, setProfile] = useState({
-    firstName: "Daniel",
-    lastName: "Spainson",
-    email: "daniel@example.com",
-    bio: "backend developer with a passion for creating beautiful and functional user interfaces.",
-    avatar: "add link of image here",
+    firstName: "",
+    lastName: "",
+    bio: "",
+    avatar: "",
   });
+
+  const supabase = createClient();
+
+  useEffect(() => {
+    async function fetchProfile() {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) return;
+
+      setUserId(user.id);
+
+      const { data, error } = await supabase
+        .from("profiles")
+        .select("first_name, last_name, bio, avatar")
+        .eq("id", user.id)
+        .maybeSingle();
+
+      if (error && error.code !== "PGRST116") {
+        console.error("Error fetching profile", error);
+      }
+
+      if (data) {
+        setProfile({
+          firstName: data.first_name || "",
+          lastName: data.last_name || "",
+          bio: data.bio || "",
+          avatar: data.avatar || "",
+        });
+      }
+    }
+
+    fetchProfile();
+  }, []);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -52,15 +75,27 @@ export default function ProfilePage() {
     setProfile((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSave = () => {
-    // Here you would typically save the profile to a database
-    console.log("Saving profile:", profile);
+  const handleSave = async () => {
+    if (!userId) return;
+
+    const { error } = await supabase.from("profiles").upsert({
+      id: userId,
+      first_name: profile.firstName,
+      last_name: profile.lastName,
+      bio: profile.bio,
+      avatar: profile.avatar,
+    });
+
+    if (error) {
+      console.error("Error saving profile", error);
+    }
+
     setIsEditing(false);
   };
 
   const handleDeleteAccount = () => {
-    // Here you would typically delete the account from a database
-    console.log("Deleting account");
+    // Lógica futura para borrar la cuenta si se desea
+    console.log("Delete account clicked");
   };
 
   return (
@@ -76,7 +111,9 @@ export default function ProfilePage() {
                   src={profile.avatar}
                   alt={`${profile.firstName} ${profile.lastName}`}
                 />
-                <AvatarFallback>{`${profile.firstName.charAt(0)}${profile.lastName.charAt(0)}`}</AvatarFallback>
+                <AvatarFallback>
+                  {`${profile.firstName.charAt(0)}${profile.lastName.charAt(0)}`}
+                </AvatarFallback>
               </Avatar>
               {isEditing && (
                 <div className="w-full">
@@ -130,24 +167,6 @@ export default function ProfilePage() {
             </div>
 
             <div className="space-y-2 w-full">
-              <Label htmlFor="email">Email</Label>
-              {isEditing ? (
-                <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  value={profile.email}
-                  onChange={handleChange}
-                  className="h-10"
-                />
-              ) : (
-                <div className="p-2 border rounded-md h-10 flex items-center">
-                  {profile.email}
-                </div>
-              )}
-            </div>
-
-            <div className="space-y-2 w-full">
               <Label htmlFor="bio">Bio</Label>
               {isEditing ? (
                 <Textarea
@@ -168,10 +187,10 @@ export default function ProfilePage() {
         </Card>
       </div>
 
-      <div className="flex justify-center w-full  overflow-auto">
+      <div className="flex justify-center w-full overflow-auto">
         {!isEditing ? (
           <div className="flex gap-4 justify-between">
-            <Button onClick={() => setIsEditing(true)}>Edit </Button>
+            <Button onClick={() => setIsEditing(true)}>Edit</Button>
             <AlertDialog>
               <AlertDialogTrigger asChild>
                 <Button variant="destructive">Delete Account</Button>
@@ -180,8 +199,7 @@ export default function ProfilePage() {
                 <AlertDialogHeader>
                   <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
                   <AlertDialogDescription>
-                    This action cannot be undone. This will permanently delete
-                    your account and remove your data from our servers.
+                    This action cannot be undone. This will permanently delete your account and remove your data from our servers.
                   </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
@@ -196,12 +214,12 @@ export default function ProfilePage() {
               </AlertDialogContent>
             </AlertDialog>
             <Button onClick={signOutAction}>
-              <LogOut></LogOut>
+              <LogOut />
             </Button>
           </div>
         ) : (
           <Button onClick={handleSave}>
-            <Save className=" h-4 w-4" />
+            <Save className="h-4 w-4" />
             Save Changes
           </Button>
         )}

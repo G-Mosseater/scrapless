@@ -43,8 +43,6 @@ export default function ProductDetailPage() {
         data: { user },
       } = await supabase.auth.getUser()
 
-      console.log(user)
-
       if (!user) throw new Error("User not logged in")
 
       await addToCart({
