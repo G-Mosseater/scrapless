@@ -25,6 +25,8 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { signOutAction } from "../actions";
+import { useRouter } from "next/navigation";
+
 
 export default function ProfilePage() {
   const [isEditing, setIsEditing] = useState(false);
@@ -37,6 +39,8 @@ export default function ProfilePage() {
   });
 
   const supabase = createClient();
+
+  const router = useRouter();
 
   useEffect(() => {
     async function fetchProfile() {
@@ -184,12 +188,22 @@ export default function ProfilePage() {
               )}
             </div>
           </CardContent>
+
+          <div className="flex justify-center mb-5">
+            <Button
+              className="w-[200px] mt-4"
+              onClick={() => router.push("/my-products")}
+            >
+              My Products
+            </Button>
+          </div>
+
         </Card>
       </div>
 
       <div className="flex justify-center w-full overflow-auto">
         {!isEditing ? (
-          <div className="flex gap-4 justify-between">
+          <div className="flex gap-4 justify-between mt-5">
             <Button onClick={() => setIsEditing(true)}>Edit</Button>
             <AlertDialog>
               <AlertDialogTrigger asChild>
