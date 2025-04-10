@@ -147,7 +147,7 @@ export const signInWithOAuth = async () => {
     provider: 'google', 
     options: {
 
-      redirectTo: 'http://localhost:3000/auth/callback'
+      redirectTo: 'https://scrapless.vercel.app/auth/callback'
 
     },
 
